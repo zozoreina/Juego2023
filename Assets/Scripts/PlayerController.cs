@@ -21,6 +21,19 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     //Variable para saber si puede dar doble salto
     bool doubleJump;
+    //Detectamos hacia donde mira el juador
+    public bool isLeft;
+
+    //Referencia al animador
+    private Animator anim;
+    //Referencia al SR del jugador
+    SpriteRenderer theSR;
+
+
+    //Variables para el contador de tiempo del KnockBack
+    public float knockBackLength, knockBackForce; //Valor que tendrá el contador de KnockBack
+    private float knockBackCounter; //Contador de KnockBack
+    public bool isHurt;
 
     //Singleton
     public static PlayerController sharedInstance;
@@ -38,38 +51,105 @@ public class PlayerController : MonoBehaviour
     {
         //Inicializamos  el rigidbody
         theRB = GetComponent<Rigidbody2D>();
+
+        //Iniciañizamos el animator
+        anim = GetComponent<Animator>();
+
+        //Inicializamos el spriteRenderer
+        theSR = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //El movimiento del player
-        theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
-
-        //Para saber si estamos tocando el suelo
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
-
-        //El salto
-        if(Input.GetButtonDown("Jump"))
+        //Si el contador de knockback se ha vaciado
+        if (knockBackCounter <= 0)
         {
-            if (isGrounded)
+            isHurt = false;
+
+            //El movimiento del player
+            theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
+
+            //Para saber si estamos tocando el suelo
+            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
+
+            //El salto
+            if (Input.GetButtonDown("Jump"))
             {
-                //El salto en sí
-                theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                //Para reiniciar el salto
-                doubleJump = true;
-            }
-            //Si el jugador no está en el suelo
-            else
-            {
-                if(doubleJump)
+                if (isGrounded)
                 {
-                    //El jugador salta
+                    //El salto en sí
                     theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                    //Y no puede volver a hacerlo
-                    doubleJump = false;
+                    //Para reiniciar el salto
+                    doubleJump = true;
+                }
+                //Si el jugador no está en el suelo
+                else
+                {
+                    if (doubleJump)
+                    {
+                        //El jugador salta
+                        theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                        //Y no puede volver a hacerlo
+                        doubleJump = false;
+                    }
                 }
             }
+
+            //Giramos el sprite del jugador según su dirección de movimiento
+            //Si el jugador se mueve a la izquierda
+            if(theRB.velocity.x < 0)
+            {
+                //No cambiamos el sprite
+                theSR.flipX = false;
+                //El jugador mira a la izquierda 
+                isLeft = true;
+            }
+            else if (theRB.velocity.x > 0)
+            {
+                theSR.flipX = true;
+                isLeft = false;
+            }
         }
+        //Si el cotador no está vacio
+        else
+        {
+            isHurt = true;
+            //Decrece el contador
+            knockBackCounter -= Time.deltaTime;
+            //si mira a la izquierda
+            if(!theSR.flipX)
+            {
+                //Empujamos derecha
+                theRB.velocity = new Vector2(knockBackForce, theRB.velocity.y);
+            }
+            else
+            {
+                //aplicamos empuje a la derecha
+                theRB.velocity = new Vector2(-knockBackForce, theRB.velocity.y);
+            }
+        }
+
+        //Para que respawne si se cae del mapa
+        if(this.gameObject.transform.position.y <= -10)
+        {
+            LevelManager.sharedInstance.respawnPlayer();
+        }
+
+        //Mantener animciones al final del update
+        //Animaciones del jugador
+        //Cambiamos el valor del parametro del animator "movespeed", dependiendo del valor de X de la velocidad de RB
+        anim.SetFloat("moveSpeed", Mathf.Abs(theRB.velocity.x));
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isHurt", isHurt);
+
     }
+
+    //Método para gestionar el knockback 
+    public void KnockBack()
+    {
+        knockBackCounter = knockBackLength;
+        theRB.velocity = new Vector2(0f, knockBackForce);
+    }
+
 }

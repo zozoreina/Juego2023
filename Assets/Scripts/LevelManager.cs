@@ -33,7 +33,8 @@ public class LevelManager : MonoBehaviour
     //Para respawear al jugador
     public void respawnPlayer()
     {
-
+        //Llamamos a la corrutina
+        StartCoroutine(respawnPlayerCo());
     }
 
     IEnumerator respawnPlayerCo()
@@ -45,7 +46,7 @@ public class LevelManager : MonoBehaviour
         //volvemos a activar al jugador 
         PlayerController.sharedInstance.gameObject.SetActive(true);
         //Lo movemos a la posición de respawn
-
+        PlayerController.sharedInstance.transform.position = CheckpoitnController.sharedInstance.spawnPoint;
     }
 
 }
