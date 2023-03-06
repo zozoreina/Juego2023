@@ -55,43 +55,51 @@ public class PlayerHealthController : MonoBehaviour
     //Método para dañar al jugador
     public void DealWithDamage(int damage)
     {
-        currentHealth -= damage;
-
-        //Si la vida es menor o igual que 0
-        if(currentHealth <= 0)
+        if(invinvibleCounter > 0)
         {
-            currentHealth = 0;
 
-            LevelManager.sharedInstance.respawnPlayer();
-        }
-        else
-        {
-            invinvibleCounter = invinvibleLength;
+            currentHealth -= damage;
 
-            theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, .5f);
+            //Si la vida es menor o igual que 0
+            if(currentHealth <= 0)
+            {
+                currentHealth = 0;
 
-            PlayerController.sharedInstance.KnockBack();
+                LevelManager.sharedInstance.respawnPlayer();
+            }
+            else
+            {
+                invinvibleCounter = invinvibleLength;
+
+                theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, .5f);
+
+                PlayerController.sharedInstance.KnockBack();
+            }
         }
     }
 
     //Método para dañar por trampa el jugador
     public void DealWithTrapDamage()
     {
-        currentHealth -= Mathf.RoundToInt(currentHealth/5) + 1;        
-
-        if (currentHealth <= 0)
+        if(invinvibleCounter > 0)
         {
-            currentHealth = 0;
 
-            LevelManager.sharedInstance.respawnPlayer();
-        }
-        else
-        {
-            invinvibleCounter = invinvibleLength;
+            currentHealth -= Mathf.Max(10, Mathf.RoundToInt(currentHealth/5) + 1);
 
-            theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, .5f);
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
 
-            PlayerController.sharedInstance.KnockBack();
+                LevelManager.sharedInstance.respawnPlayer();
+            }
+            else
+            {
+                invinvibleCounter = invinvibleLength;
+
+                theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, .5f);
+
+                PlayerController.sharedInstance.KnockBack();
+            }
         }
     }
 
@@ -105,5 +113,10 @@ public class PlayerHealthController : MonoBehaviour
             currentHealth = maxHealth;
         }
 
+    }
+
+    public void ChangeInvinvibleCounter(float changeTo)
+    {
+        invinvibleCounter = changeTo;
     }
 }

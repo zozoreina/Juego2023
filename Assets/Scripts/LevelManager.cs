@@ -45,6 +45,8 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(waitToRespawn);
         //volvemos a activar al jugador 
         PlayerController.sharedInstance.gameObject.SetActive(true);
+        //Le devolvemos algo de vida
+        PlayerHealthController.sharedInstance.currentHealth = PlayerHealthController.sharedInstance.maxHealth;
         //Lo movemos a la posición de respawn
         PlayerController.sharedInstance.transform.position = CheckpoitnController.sharedInstance.spawnPoint;
     }

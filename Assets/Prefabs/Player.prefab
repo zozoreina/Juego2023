@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -170,14 +170,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 15
+  jumpForce: 20
+  dashForce: 20
+  dashLength: 1
   groundCheckPoint: {fileID: 1319390550}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   isLeft: 0
   knockBackLength: 1
-  knockBackForce: 3
+  knockBackForce: 5
   isHurt: 0
 --- !u!114 &8621339439650968504
 MonoBehaviour:

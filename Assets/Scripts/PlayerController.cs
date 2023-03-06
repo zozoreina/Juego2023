@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
 
     //Fuerza de salto
     public float jumpForce;
+    //Dash
+    public float dashForce, dashLength;
+    float dashCounter;
+
 
     //Variable para saber si el jugador está en el suelo
     private bool isGrounded;
@@ -62,59 +66,84 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //El movimiento del player
+        theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
+
+        //Para saber si estamos tocando el suelo
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
+
+        //El salto
+        if (isGrounded)
+        {
+            //Saltar
+            doubleJump = true;
+            if (Input.GetButtonDown("Jump"))
+            {
+                //El salto en sí
+                theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+            }
+
+            //Dash
+            if(Input.GetKeyDown(KeyCode.LeftShift) && dashCounter >= dashLength)
+            {
+                PlayerHealthController.sharedInstance.ChangeInvinvibleCounter(dashLength);
+                if (isLeft)
+                {
+                    theRB.velocity = new Vector2(-dashForce, 5f);
+                }
+                else
+                {
+                    theRB.velocity = new Vector2(dashForce, 5f);
+                }
+                dashCounter = 0;
+            }
+            else
+            {
+                if (dashCounter < dashLength)
+                {
+                    dashCounter += Time.deltaTime;
+                }
+               
+            }
+        }
+        else
+        {
+            //Saltar
+            if (doubleJump && Input.GetButtonDown("Jump"))
+            {
+                //El jugador salta
+                theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                //Y no puede volver a hacerlo
+                doubleJump = false;
+            }
+        }
+
+        //Giramos el sprite del jugador según su dirección de movimiento
+        //Si el jugador se mueve a la izquierda
+        if (theRB.velocity.x < 0)
+        {
+            //No cambiamos el sprite
+            theSR.flipX = false;
+            //El jugador mira a la izquierda 
+            isLeft = true;
+        }
+        else if (theRB.velocity.x > 0)
+        {
+            theSR.flipX = true;
+            isLeft = false;
+        }
+
         //Si el contador de knockback se ha vaciado
         if (knockBackCounter <= 0)
         {
             isHurt = false;
-
-            //El movimiento del player
-            theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
-
-            //Para saber si estamos tocando el suelo
-            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
-
-            //El salto
-            if (Input.GetButtonDown("Jump"))
-            {
-                if (isGrounded)
-                {
-                    //El salto en sí
-                    theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                    //Para reiniciar el salto
-                    doubleJump = true;
-                }
-                //Si el jugador no está en el suelo
-                else
-                {
-                    if (doubleJump)
-                    {
-                        //El jugador salta
-                        theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                        //Y no puede volver a hacerlo
-                        doubleJump = false;
-                    }
-                }
-            }
-
-            //Giramos el sprite del jugador según su dirección de movimiento
-            //Si el jugador se mueve a la izquierda
-            if(theRB.velocity.x < 0)
-            {
-                //No cambiamos el sprite
-                theSR.flipX = false;
-                //El jugador mira a la izquierda 
-                isLeft = true;
-            }
-            else if (theRB.velocity.x > 0)
-            {
-                theSR.flipX = true;
-                isLeft = false;
-            }
+            
         }
         //Si el cotador no está vacio
         else
         {
             isHurt = true;
+            
             //Decrece el contador
             knockBackCounter -= Time.deltaTime;
             //si mira a la izquierda
