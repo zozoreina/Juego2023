@@ -55,7 +55,7 @@ public class PlayerHealthController : MonoBehaviour
     //Método para dañar al jugador
     public void DealWithDamage(int damage)
     {
-        if(invinvibleCounter > 0)
+        if(invinvibleCounter <= 0)
         {
 
             currentHealth -= damage;
@@ -81,7 +81,7 @@ public class PlayerHealthController : MonoBehaviour
     //Método para dañar por trampa el jugador
     public void DealWithTrapDamage()
     {
-        if(invinvibleCounter > 0)
+        if(invinvibleCounter <= 0)
         {
 
             currentHealth -= Mathf.Max(10, Mathf.RoundToInt(currentHealth/5) + 1);
@@ -104,7 +104,7 @@ public class PlayerHealthController : MonoBehaviour
     }
 
     //Método para curar al jugador
-    public void HealPlayer(int heal)
+    public void HealPlayer(float heal)
     {
         currentHealth += heal;
 
