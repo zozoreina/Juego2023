@@ -12,10 +12,15 @@ public class PlayerController : MonoBehaviour
 
     //Fuerza de salto
     public float jumpForce;
+
     //Dash
     bool isDashing, canDash = true;
     public float dashForce, dashLength, dashWaitTime;
     float dashCounter;
+
+    //Attack
+    bool isAttacking, canAttack;
+    public float attackLength, attackWaitTime;
 
 
     //Variable para saber si el jugador está en el suelo
@@ -202,6 +207,11 @@ public class PlayerController : MonoBehaviour
         theRB.gravityScale = 3f;
         yield return new WaitForSeconds(dashWaitTime);
         canDash = true;
+    }
+
+    public void Atack()
+    {
+
     }
 
 }

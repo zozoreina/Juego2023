@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jumpForce: 20
-  dashForce: 10
+  dashForce: 12
   dashLength: 1
   dashWaitTime: 1
   groundCheckPoint: {fileID: 1319390550}
