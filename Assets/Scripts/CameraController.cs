@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         //La cam sigue al jugador sin cambiar en z
-        transform.position = new Vector3(target.position.x, Mathf.Clamp(target.position.y +5.5f,minHeight, 100f), transform.position.z);
+        transform.position = new Vector3(target.position.x, transform.position.y, transform.position.z);
 
         //Varibale para saber cuanto hay que moverse
         float amountToMoveX = transform.position.x - lastPos.x;
