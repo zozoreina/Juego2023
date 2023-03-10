@@ -6,6 +6,8 @@ public class PlayerAttack : MonoBehaviour
 {
     //LLamamiento al RigidBody
     private Rigidbody2D theRB;
+    //Lamamiento al Animator
+    private Animator anim;
 
 
     public static PlayerAttack sharedInstance;
@@ -22,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         theRB = GetComponentInChildren<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
