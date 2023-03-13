@@ -8,6 +8,18 @@ public class EnemyHealthController : MonoBehaviour
     public int maxHealth;
     int currentHealth;
 
+
+    //Singleton
+    public static EnemyHealthController sharedInstance;
+
+    private void Awake()
+    {
+        if(sharedInstance == null)
+        {
+            sharedInstance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +32,7 @@ public class EnemyHealthController : MonoBehaviour
         
     }
 
-    public void EnemyTakingDamage(int damage)
+    public void EnemyTakingDamage()
     {
         currentHealth--;
         if(currentHealth <= 0)
@@ -29,7 +41,7 @@ public class EnemyHealthController : MonoBehaviour
         }
         else
         {
-
+            EnemyController.sharedInstance.EnemyKnockback();
         }
     }
 

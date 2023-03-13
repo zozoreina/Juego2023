@@ -25,17 +25,27 @@ public class PlayerAttack : MonoBehaviour
     {
         theRB = GetComponentInChildren<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy"))
+        {
+            DealDamageToEnemy();
+        }
     }
 
     public void DealDamageToEnemy()
     {
-
+        EnemyHealthController.sharedInstance.EnemyTakingDamage();
     }
 
 }

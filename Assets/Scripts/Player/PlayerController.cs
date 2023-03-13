@@ -80,23 +80,23 @@ public class PlayerController : MonoBehaviour
 
             if(!isHurt)
             {
-            //El movimiento del player
-            theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
+                //El movimiento del player
+                theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
 
-             //Giramos el sprite del jugador según su dirección de movimiento
-             //Si el jugador se mueve a la izquierda
-             if (theRB.velocity.x < 0)
-             {
-                    //No cambiamos el sprite
-                    theSR.flipX = false;
-                    //El jugador mira a la izquierda 
-                    isLeft = true;
-             }
-             else if (theRB.velocity.x > 0)
-             {
-                    theSR.flipX = true;
-                    isLeft = false;
-             }
+                 //Giramos el sprite del jugador según su dirección de movimiento
+                 //Si el jugador se mueve a la izquierda
+                 if (theRB.velocity.x < 0)
+                 {
+                        //No cambiamos el sprite
+                        theSR.flipX = false;
+                        //El jugador mira a la izquierda 
+                        isLeft = true;
+                 }
+                 else if (theRB.velocity.x > 0)
+                 {
+                        theSR.flipX = true;
+                        isLeft = false;
+                 }
             }
 
             
