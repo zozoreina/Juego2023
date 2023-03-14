@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    //LLamamiento al RigidBody
-    private Rigidbody2D theRB;
-    //Lamamiento al Animator
-    private Animator anim;
+    //Referencia al attackPoint
+    public GameObject attackPoint;
 
-
+    //Singleton
     public static PlayerAttack sharedInstance;
 
     private void Awake()
@@ -23,25 +21,23 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        theRB = GetComponentInChildren<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-
-        
+            
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Enemy"))
+        if(PlayerController.sharedInstance.isLeft)
         {
-            DealDamageToEnemy();
+            transform.position = attackPoint.transform.position;
+        }
+        else if(!PlayerController.sharedInstance.isLeft)
+        {
+            
         }
     }
+
+   
 
     public void DealDamageToEnemy()
     {

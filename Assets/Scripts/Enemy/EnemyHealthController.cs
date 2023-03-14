@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour
 {
-
+    //Vida
     public int maxHealth;
     int currentHealth;
 
@@ -23,7 +23,7 @@ public class EnemyHealthController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = currentHealth;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame

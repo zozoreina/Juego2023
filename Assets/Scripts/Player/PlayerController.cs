@@ -182,12 +182,13 @@ public class PlayerController : MonoBehaviour
         theRB.velocity = new Vector2(0f, knockBackForce);
     }
 
+    //Método para hacer dash en el suelo
     public void GroundDash()
     {
         StartCoroutine(GroundDashCO());
     }
 
-
+    //Corrutina para hacer dash
     public IEnumerator GroundDashCO()
     {
         isDashing = true;
@@ -209,6 +210,7 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
+    //Método para atacar
     public void Atack()
     {
 
