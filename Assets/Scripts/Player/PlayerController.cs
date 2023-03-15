@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
     //Attack
     bool isAttacking, canAttack;
     public float attackLength, attackWaitTime;
+    //Referencia al punto del que salen los ataques
+    public GameObject attackPoint;
+    //Referencias a los ataques
+    public GameObject attack1, attack3;
 
 
     //Variable para saber si el jugador está en el suelo
@@ -44,6 +48,8 @@ public class PlayerController : MonoBehaviour
     public float knockBackLength, knockBackForce; //Valor que tendrá el contador de KnockBack
     private float knockBackCounter; //Contador de KnockBack
     public bool isHurt;
+
+    
 
     //Singleton
     public static PlayerController sharedInstance;
@@ -211,9 +217,16 @@ public class PlayerController : MonoBehaviour
     }
 
     //Método para atacar
-    public void Atack()
+    public void Attack()
     {
 
+    }
+
+    //Corrutina de ataque
+    IEnumerator AttackCo()
+    {
+        isAttacking = true;
+        Instantiate(attack1, transform.GetChild(1).position, transform.GetChild(1).rotation);
     }
 
 }

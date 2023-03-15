@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5868049357561952701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -216,6 +216,7 @@ MonoBehaviour:
   knockBackLength: 1
   knockBackForce: 5
   isHurt: 0
+  attackPoint: {fileID: 5868049357561952701}
 --- !u!114 &8621339439650968504
 MonoBehaviour:
   m_ObjectHideFlags: 0

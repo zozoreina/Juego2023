@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    //Referencia al attackPoint
-    public GameObject attackPoint;
-
+    
     //Singleton
     public static PlayerAttack sharedInstance;
 
@@ -18,30 +16,21 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-            
-    }
-
     // Update is called once per frame
     void LateUpdate()
     {
-        if(PlayerController.sharedInstance.isLeft)
-        {
-            transform.position = attackPoint.transform.position;
+        this.gameObject.transform.position = PlayerController.sharedInstance.attackPoint.transform.position;
+        if (PlayerController.sharedInstance.isLeft)
+        {            
+            gameObject.transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
         }
         else if(!PlayerController.sharedInstance.isLeft)
         {
-            
+            gameObject.transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
         }
     }
 
    
 
-    public void DealDamageToEnemy()
-    {
-        EnemyHealthController.sharedInstance.EnemyTakingDamage();
-    }
-
+    
 }
