@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    
-    //Singleton
-    public static PlayerAttack sharedInstance;
-
-    private void Awake()
-    {
-        if(sharedInstance == null)
-        {
-            sharedInstance = this;
-        }
-    }
-
     // Update is called once per frame
     void LateUpdate()
     {
