@@ -202,21 +202,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 20
-  dashForce: 12
+  dashForce: 13
   dashLength: 1
   dashWaitTime: 1
-  attackLength: 0
-  attackWaitTime: 0
+  attackWaitTime: 0.5
+  attackPoint: {fileID: 5868049357561952701}
+  attack1: {fileID: 8360301622783447605, guid: b649434bafb191542a6d05a6f012783a, type: 3}
+  attack3: {fileID: 2806472208488246224, guid: d58e7e1f947c50f49a37f8452f049111, type: 3}
+  attacksDurations:
+  - 0.13
+  - 0.2
   groundCheckPoint: {fileID: 1319390550}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  jumpForce: 20
   isLeft: 0
   knockBackLength: 1
   knockBackForce: 5
   isHurt: 0
-  attackPoint: {fileID: 5868049357561952701}
 --- !u!114 &8621339439650968504
 MonoBehaviour:
   m_ObjectHideFlags: 0
