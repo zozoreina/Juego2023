@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class CompanionController : MonoBehaviour
 {
-    //Referencia al RB
-    private Rigidbody2D theRB;
-    
-    //
+    //Referencia a la posición del compañero
+    Transform companion;
+
+    //Velocidad de movimiento
+    public float moveSpeed;
+
+    //Referencia a la posición a la que se quieren mover los compañeros
+    public Transform[] objetivePos;
 
     // Start is called before the first frame update
     void Start()
     {
-        //inicializamos el RB
-        theRB = GetComponent<Rigidbody2D>();
+        companion = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        theRB.velocity = Mathf.MoveTowards(transform.position, )
+        companion.position = Vector3.MoveTowards(transform.position, objetivePos[0].position, moveSpeed * Time.deltaTime);
     }
 }
