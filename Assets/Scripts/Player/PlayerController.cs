@@ -184,11 +184,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        //Para que respawne si se cae del mapa
-        if(this.gameObject.transform.position.y <= -10)
-        {
-            LevelManager.sharedInstance.respawnPlayer();
-        }
+        
 
         //Mantener animciones al final del update
         //Animaciones del jugador

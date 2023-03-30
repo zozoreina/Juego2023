@@ -37,6 +37,12 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(respawnPlayerCo());
     }
 
+    //Método para respawnear al compañero
+    public void respawnCompanion()
+    {
+        StartCoroutine(respawnCompanionCo());
+    }
+
     IEnumerator respawnPlayerCo()
     {
         //Desactivamos al jugador
@@ -49,6 +55,14 @@ public class LevelManager : MonoBehaviour
         PlayerHealthController.sharedInstance.currentHealth = PlayerHealthController.sharedInstance.maxHealth;
         //Lo movemos a la posición de respawn
         PlayerController.sharedInstance.transform.position = CheckpoitnController.sharedInstance.spawnPoint;
+    }
+
+    IEnumerator respawnCompanionCo()
+    {
+        CompanionController.sharedInstance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(waitToRespawn);
+        CompanionController.sharedInstance.gameObject.SetActive(true);
+        CompanionController.sharedInstance.transform.position = CompanionController.sharedInstance.objetivePos[0].position;
     }
 
 }
