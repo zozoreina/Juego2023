@@ -22,6 +22,9 @@ public class CompanionController : MonoBehaviour
     //Referencia al punto del suelo
     public Transform groundPoint;
 
+    //Booleanas para compenetrar con player
+    bool airDash, chargedAttack, forthAttack, airAttack, distanceAttack;
+
     //Singleton
     public static CompanionController sharedInstance;
 
@@ -42,7 +45,7 @@ public class CompanionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundPoint.position, .5f, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundPoint.position, 1f, whatIsGround);
 
         //Para saber si mira a la izquierda o la derecha
         if (theRB.position.x < objetivePos[currentPos].position.x)
@@ -61,22 +64,13 @@ public class CompanionController : MonoBehaviour
         else if (Mathf.Abs(theRB.position.x - objetivePos[currentPos].position.x) < .1f)
             theRB.velocity = new Vector2(0, theRB.velocity.y);
 
-        if (theRB.position.y < objetivePos[currentPos].position.y)
+        if (theRB.position.y < objetivePos[currentPos].position.y -.1f && isGrounded) 
         {
-            if (isGrounded)
-            {
-                theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);
-            }
+            theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);          
         }
-        else theRB.velocity = new Vector2(theRB.velocity.x, theRB.velocity.y);
 
 
 
     }
-
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if()
-    }
-    */
+    
 }

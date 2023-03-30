@@ -43,6 +43,12 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(respawnCompanionCo());
     }
 
+    //Método para respawnear enemigos
+    public void respawnEnemy()
+    {
+        StartCoroutine(respawnEnemyCo());
+    }
+
     IEnumerator respawnPlayerCo()
     {
         //Desactivamos al jugador
@@ -65,4 +71,11 @@ public class LevelManager : MonoBehaviour
         CompanionController.sharedInstance.transform.position = CompanionController.sharedInstance.objetivePos[0].position;
     }
 
+    IEnumerator respawnEnemyCo()
+    {
+        EnemyController.sharedInstance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(waitToRespawn);
+        EnemyController.sharedInstance.gameObject.SetActive(true);
+        EnemyController.sharedInstance.transform.position = EnemyController.sharedInstance.spawnPoint;
+    }
 }

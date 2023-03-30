@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class OutOfMapLimit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //Método para respawnear cosas que se caigan fuera del mapa
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,5 +13,7 @@ public class OutOfMapLimit : MonoBehaviour
         }
         else if (collision.CompareTag("Companion"))
             LevelManager.sharedInstance.respawnCompanion();
+        else if (collision.CompareTag("Enemy"))
+            LevelManager.sharedInstance.respawnEnemy();
     }
 }

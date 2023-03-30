@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    /*
     // Update is called once per frame
     void LateUpdate()
     {
@@ -18,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-   
+   */
 
     
 }

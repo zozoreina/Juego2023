@@ -13,20 +13,6 @@ public class PlayerController : MonoBehaviour
     //Dash
     bool isDashing, canDash = true;
     public float dashForce, dashLength, dashWaitTime;
-
-    //Attack
-    bool isAttacking;
-    //Para cada ataque un bool
-    bool[] canAttack = new bool[4];
-    //Timepo de espera entre ataques
-    public float attackWaitTime;
-    //Referencia al punto del que salen los ataques
-    public GameObject attackPoint;
-    //Referencias a los ataques
-    public GameObject attack1, attack3;
-    //Duración de los ataques
-    public float[] attacksDurations;
-
     
 
     //Variable para saber si el jugador está en el suelo
@@ -55,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private float knockBackCounter; //Contador de KnockBack
     public bool isHurt;
 
+    //Referencia al Menu de pausa
+    public PauseMenu pauseMenu;
     
 
     //Singleton
@@ -80,109 +68,110 @@ public class PlayerController : MonoBehaviour
         //Inicializamos el spriteRenderer
         theSR = GetComponent<SpriteRenderer>();
 
-        //Ponemos el primer booleano de ataque en verdadero para que pueda emepezar la secuencia de ataques
-        canAttack[0] = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Para saber si estamos tocando el suelo
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
-
-        if (!isDashing)
+        if(!pauseMenu.isPaused)
         {
-            if (!isAttacking)
+
+            //Para saber si estamos tocando el suelo
+            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
+
+
+            if (!isDashing)
             {
+           
+            
 
-                if (!isHurt)
-                {
-                
-                    //El movimiento del player
-                    theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
-
-                     //Giramos el sprite del jugador según su dirección de movimiento
-                     //Si el jugador se mueve a la izquierda
-                     if (theRB.velocity.x < 0)
-                     {
-                            //No cambiamos el sprite
-                            theSR.flipX = false;
-                            //El jugador mira a la izquierda 
-                            isLeft = true;
-                     }
-                     else if (theRB.velocity.x > 0)
-                     {
-                            theSR.flipX = true;
-                            isLeft = false;
-                     }
-
-                    if (Input.GetButtonDown("Fire1") && canAttack[0])
+                    if (!isHurt)
                     {
-                        Attack();
+                
+                        //El movimiento del player
+                        theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
+
+                         //Giramos el sprite del jugador según su dirección de movimiento
+                         //Si el jugador se mueve a la izquierda
+                         if (theRB.velocity.x < 0)
+                         {
+                                //No cambiamos el sprite
+                                theSR.flipX = false;
+                                //El jugador mira a la izquierda 
+                                isLeft = true;
+                         }
+                         else if (theRB.velocity.x > 0)
+                         {
+                                theSR.flipX = true;
+                                isLeft = false;
+                         }
+
+                    
                     }
-                }
 
             
 
-                //El salto y el ground dash
-                if (isGrounded)
-                {
-                    //Saltar
-                    doubleJump = true;
-                    if (Input.GetButtonDown("Jump"))
+                    //El salto y el ground dash
+                    if (isGrounded)
                     {
-                        //El salto en sí
-                        theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                        //Saltar
+                        doubleJump = true;
+                        if (Input.GetButtonDown("Jump"))
+                        {
+                            //El salto en sí
+                            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                        }
+
+                        //Para hacer dash
+                        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+                        {
+                            GroundDash();
+                        }
+
+                    }
+                    else
+                    {
+                        //Saltar
+                        if (doubleJump && Input.GetButtonDown("Jump"))
+                        {
+                            //El jugador salta
+                            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                            //Y no puede volver a hacerlo
+                            doubleJump = false;
+                        }
                     }
 
-                    //Para hacer dash
-                    if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-                    {
-                        GroundDash();
-                    }
-
-                }
-                else
-                {
-                    //Saltar
-                    if (doubleJump && Input.GetButtonDown("Jump"))
-                    {
-                        //El jugador salta
-                        theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                        //Y no puede volver a hacerlo
-                        doubleJump = false;
-                    }
-                }
-
-            }
+            
        
 
-            //Si el contador de knockback se ha vaciado
-            if (knockBackCounter <= 0)
-            {
-                isHurt = false;
-            
-            }
-            //Si el cotador no está vacio
-            else
-            {
-                isHurt = true;
-            
-                //Decrece el contador
-                knockBackCounter -= Time.deltaTime;
-                //si mira a la izquierda
-                if(!isLeft)
+                //Si el contador de knockback se ha vaciado
+                if (knockBackCounter <= 0)
                 {
-                    //Empujamos derecha
-                    theRB.velocity = new Vector2(-knockBackForce, theRB.velocity.y);
+                    isHurt = false;
+            
                 }
+                //Si el cotador no está vacio
                 else
                 {
-                    //aplicamos empuje a la derecha
-                    theRB.velocity = new Vector2(knockBackForce, theRB.velocity.y);
+                    isHurt = true;
+            
+                    //Decrece el contador
+                    knockBackCounter -= Time.deltaTime;
+                    //si mira a la izquierda
+                    if(!isLeft)
+                    {
+                        //Empujamos derecha
+                        theRB.velocity = new Vector2(-knockBackForce, theRB.velocity.y);
+                    }
+                    else
+                    {
+                        //aplicamos empuje a la derecha
+                        theRB.velocity = new Vector2(knockBackForce, theRB.velocity.y);
+                    }
                 }
-            }
 
+            }
         }
         
 
@@ -230,43 +219,8 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
-    //Método para atacar
-    public void Attack()
-    {
-        StartCoroutine(AttackCo());
-    }
+    
 
-    //Corrutina de ataque
-    IEnumerator AttackCo()
-    {
-        isAttacking = true;
-        canAttack[0] = false;
-        Instantiate(attack1, transform.GetChild(1).position, transform.GetChild(1).rotation);
-        yield return new WaitForSeconds(attacksDurations[0]);
-        canAttack[1] = true;
-        for (float i = 0; i < attackWaitTime; i += Time.deltaTime)
-        {
-            if(Input.GetButtonDown("Fire1") && canAttack[1])
-            {
-                canAttack[1] = false;
-                Instantiate(attack1, transform.GetChild(1).position, transform.GetChild(1).rotation);
-                yield return new WaitForSeconds(attacksDurations[0]);
-                canAttack[2] = true;
-                for (float c = 0; c < attackWaitTime; c += Time.deltaTime)
-                {
-                    if (Input.GetButtonDown("Fire1") && canAttack[2])
-                    {
-                        canAttack[2] = false;
-                        Instantiate(attack3, transform.GetChild(1).position, transform.GetChild(1).rotation);
-                        yield return new WaitForSeconds(attacksDurations[1]);
-                        
-                    }
-                }
-            }
-        }
-        isAttacking = false;
-        yield return new WaitForSeconds(attackWaitTime);
-        canAttack[0] = true;
-    }
+    
 
 }

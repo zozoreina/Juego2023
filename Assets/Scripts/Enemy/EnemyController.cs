@@ -11,6 +11,9 @@ public class EnemyController : MonoBehaviour
     //Referencia al RB
     private Rigidbody2D theRB;
 
+    //Punto donde de aparación original del enemigo
+    public Vector3 spawnPoint;
+
     //Singleton
     public static EnemyController sharedInstance;
 
@@ -27,6 +30,9 @@ public class EnemyController : MonoBehaviour
     {
         //Inicializamos el RB
         theRB = GetComponent<Rigidbody2D>();
+
+        //Guardamos punto de aparición
+        spawnPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -47,5 +53,7 @@ public class EnemyController : MonoBehaviour
             theRB.velocity = new Vector2(knockBackForce, theRB.velocity.y);
         }
     }
+
+    
 
 }
