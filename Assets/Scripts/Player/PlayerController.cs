@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     //Referencia al Comanion Menu
     public CompanionsMenu companionMenu;
 
+    //Variable para saber si el jugador se puede mover o no
+    private bool canPlay;
 
     //Singleton
     public static PlayerController sharedInstance;
@@ -76,7 +78,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!pauseMenu.isPaused || !companionMenu.isConversationOn) 
+        //Para saber si el jugador puede moverse y jugar o no
+        if (companionMenu.isConversationOn || pauseMenu.isPaused)
+            canPlay = false;
+        else canPlay = true;
+
+        if (canPlay) 
         {
 
             //Para saber si estamos tocando el suelo

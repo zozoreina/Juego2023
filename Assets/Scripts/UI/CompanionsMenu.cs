@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CompanionsMenu : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class CompanionsMenu : MonoBehaviour
     public GameObject infoPanel;
     //Referencia al Panel de conversación
     public GameObject conversationPanel;
+    //Referencia a los botones de personalización de compañeros
+    public GameObject companion1Settings;
+    public Button[] companion2Buttons;
 
     //Variable para saber si estás conversando
     public bool isConversationOn;
@@ -50,6 +54,7 @@ public class CompanionsMenu : MonoBehaviour
         Time.timeScale = 0f;
         isConversationOn = true;
         conversationPanel.SetActive(true);
+        companion1Settings.SetActive(true);
     }
 
     //Método para salir del modo conversación
@@ -61,11 +66,17 @@ public class CompanionsMenu : MonoBehaviour
     }
 
     //Método para activar el compañero 1 y desactivar el 2
-    public void Comp1Conv()
+    public void Comp1ConvButton()
     {
         comp1 = true;
-        comp2 = false;
-        
+        comp2 = false;               
     }
+    public void Comp2ConvButton()
+    {
+        comp1 = false;
+        comp2 = true;
+    }
+
+
 
 }
