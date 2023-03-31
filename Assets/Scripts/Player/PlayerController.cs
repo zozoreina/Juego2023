@@ -43,7 +43,9 @@ public class PlayerController : MonoBehaviour
 
     //Referencia al Menu de pausa
     public PauseMenu pauseMenu;
-    
+    //Referencia al Comanion Menu
+    public CompanionsMenu companionMenu;
+
 
     //Singleton
     public static PlayerController sharedInstance;
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!pauseMenu.isPaused)
+        if (!pauseMenu.isPaused || !companionMenu.isConversationOn) 
         {
 
             //Para saber si estamos tocando el suelo

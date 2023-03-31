@@ -13,6 +13,9 @@ public class PauseMenu : MonoBehaviour
 
     //Variable para saber si el juego está pausado
     public bool isPaused;
+
+    //Referencia al companionMenu
+    public CompanionsMenu companionMenu;
     
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,7 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         //Para pausar el juego
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !companionMenu.isConversationOn)
             PauseUnpause();
     }
 
