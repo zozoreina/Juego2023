@@ -24,6 +24,8 @@ public class CompanionController : MonoBehaviour
 
     //Booleanas para compenetrar con player
     bool airDash, chargedAttack, forthAttack, airAttack, distanceAttack;
+    //Array para guardar que booleanas están activas
+    bool[] activeAbilities;
 
     //Singleton
     public static CompanionController sharedInstance;
@@ -34,6 +36,7 @@ public class CompanionController : MonoBehaviour
         {
             sharedInstance = this;
         }
+        
     }
 
     // Start is called before the first frame update
@@ -71,6 +74,19 @@ public class CompanionController : MonoBehaviour
 
 
 
+    }
+
+    //Método para comprobar si el booleano objetivo está dentro del array
+    public void checkActivatedAbilities(bool ability)
+    {
+        int a;
+        if (ability)
+            return;
+        else if(activeAbilities.Length < 4)
+        {
+            activeAbilities.
+        }
+           
     }
     
 }

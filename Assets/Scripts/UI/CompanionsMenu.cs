@@ -11,12 +11,13 @@ public class CompanionsMenu : MonoBehaviour
     public GameObject conversationPanel;
     //Referencia a los botones de personalización de compañeros
     public GameObject companion1Settings;
-    public Button[] companion2Buttons;
+    public GameObject companion2Settings;
+    //public Button[] companion1Buttons; //No hace nada de momento
 
     //Variable para saber si estás conversando
     public bool isConversationOn;
     //Variables para saber que compañero está activo en la conversación
-    bool comp1, comp2;
+    bool comp1, comp2; //No hacen nada de momento
 
     //Referencia al Menu de pausa
     public PauseMenu pauseMenu;
@@ -68,13 +69,16 @@ public class CompanionsMenu : MonoBehaviour
     //Método para activar el compañero 1 y desactivar el 2
     public void Comp1ConvButton()
     {
-        comp1 = true;
-        comp2 = false;               
+        
+        companion1Settings.SetActive(true);
+        companion2Settings.SetActive(false);
+
     }
     public void Comp2ConvButton()
     {
-        comp1 = false;
-        comp2 = true;
+        
+        companion2Settings.SetActive(true);
+        companion1Settings.SetActive(false);
     }
 
 
