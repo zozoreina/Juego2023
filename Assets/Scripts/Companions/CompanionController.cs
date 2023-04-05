@@ -23,9 +23,9 @@ public class CompanionController : MonoBehaviour
     public Transform groundPoint;
 
     //Booleanas para compenetrar con player
-    bool airDash, chargedAttack, forthAttack, airAttack, distanceAttack;
+    bool airDash, chargedAttack, attackCombo, airAttack, distanceAttack;
     //Array para guardar que booleanas están activas
-    bool[] activeAbilities;
+    string[] activeAbilities = new string[3];
 
     //Singleton
     public static CompanionController sharedInstance;
@@ -76,17 +76,193 @@ public class CompanionController : MonoBehaviour
 
     }
 
-    //Método para comprobar si el booleano objetivo está dentro del array
-    public void checkActivatedAbilities(bool ability)
+    //Método para el botón Air Dash
+    public void AirDashButton()
     {
-        int a;
-        if (ability)
-            return;
-        else if(activeAbilities.Length < 4)
+        if (airDash)
         {
-            activeAbilities.
+            airDash = false;
+            DeactivateAbilities(airDash);
         }
-           
+        else
+        {
+            airDash = true;
+            ActivateAbility(airDash);
+        }
+    }
+
+    //Método para le botón Charged Attack
+    public void ChargedAttackButton()
+    {
+        if(chargedAttack)
+        { 
+            chargedAttack = false;
+            DeactivateAbilities(chargedAttack);
+        }
+        else
+        {
+            chargedAttack = true;
+            ActivateAbility(chargedAttack);
+        }
+    }
+
+    //Método apra el botón Attack Combo
+    public void AttackComboButton()
+    {
+        if(attackCombo)
+        {
+            attackCombo = false;
+            DeactivateAbilities(attackCombo);
+        }
+        else
+        {
+            attackCombo = true;
+            ActivateAbility(attackCombo);
+        }
+    }
+
+    //Método para el botón Air Attack
+    public void AirAttackButton()
+    {
+        if(airAttack)
+        {
+            airAttack = false;
+            DeactivateAbilities(airAttack);
+        }
+        else
+        {
+            airAttack = true;
+            ActivateAbility(airAttack);
+        }
+    }
+
+    //Método para el botón Distance Attack
+    public void DistanceAttackButton()
+    {
+        if(distanceAttack)
+        {
+            distanceAttack = false;
+            DeactivateAbilities(distanceAttack);
+        }
+        else
+        {
+            distanceAttack = true;
+            ActivateAbility(distanceAttack);
+        }
+    }
+
+    //Método para comprobar si el booleano objetivo está dentro del array
+    public void ActivateAbility(bool ability)
+    {
+        for (int a = 0; a < activeAbilities.Length; a++)
+        {
+            if (activeAbilities[a] == null)
+                activeAbilities[a] = ability.ToString();
+            else if (a == activeAbilities.Length - 1)
+            {
+                switch (activeAbilities[0])
+                {
+                    case "airDash":
+                        airDash = false;
+                        break;
+                    case "chargedAttack":
+                        chargedAttack = false;
+                        break;
+                    case "attackCombo":
+                        attackCombo = false;
+                        break;
+                    case "airAttack":
+                        airAttack = false;
+                        break;
+                    case "distanceAttack":
+                        distanceAttack = false;
+                        break;
+                }
+                activeAbilities[0] = activeAbilities[1];
+                activeAbilities[1] = activeAbilities[2];
+                activeAbilities[2] = ability.ToString();
+            }
+        }
+    }
+
+    //Método para desactivar habilidades
+    public void DeactivateAbilities(bool ability)
+    {
+        for (int a = 0; a < activeAbilities.Length; a++)
+        {
+            if (activeAbilities[a] == ability.ToString())
+            {
+                switch(a)
+                {
+                    case 0:
+                        switch (activeAbilities[0])
+                        {
+                            case "airDash":
+                                airDash = false;
+                                break;
+                            case "chargedAttack":
+                                chargedAttack = false;
+                                break;
+                            case "attackCombo":
+                                attackCombo = false;
+                                break;
+                            case "airAttack":
+                                airAttack = false;
+                                break;
+                            case "distanceAttack":
+                                distanceAttack = false;
+                                break;
+                        }
+                        activeAbilities[0] = activeAbilities[1];
+                        activeAbilities[1] = activeAbilities[2];
+                        activeAbilities[2] = null;
+                        break;
+                    case 1:
+                        switch (activeAbilities[1])
+                        {
+                            case "airDash":
+                                airDash = false;
+                                break;
+                            case "chargedAttack":
+                                chargedAttack = false;
+                                break;
+                            case "attackCombo":
+                                attackCombo = false;
+                                break;
+                            case "airAttack":
+                                airAttack = false;
+                                break;
+                            case "distanceAttack":
+                                distanceAttack = false;
+                                break;
+                        }
+                        activeAbilities[1] = activeAbilities[2];
+                        activeAbilities[2] = null;
+                        break;
+                    case 2:
+                        switch (activeAbilities[2])
+                        {
+                            case "airDash":
+                                airDash = false;
+                                break;
+                            case "chargedAttack":
+                                chargedAttack = false;
+                                break;
+                            case "attackCombo":
+                                attackCombo = false;
+                                break;
+                            case "airAttack":
+                                airAttack = false;
+                                break;
+                            case "distanceAttack":
+                                distanceAttack = false;
+                                break;
+                        }
+                        activeAbilities[2] = null;
+                        break;
+                }
+            }
+        }
     }
     
 }

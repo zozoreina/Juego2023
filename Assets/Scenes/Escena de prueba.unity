@@ -1092,6 +1092,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 90214351716bbcf498c5b0697d08bdbc, type: 3}
+--- !u!114 &3621046396567943229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3621046397262343703, guid: 90214351716bbcf498c5b0697d08bdbc, type: 3}
+  m_PrefabInstance: {fileID: 3621046396567943228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5e49874e1e4ae4f9113af2497729f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5195196546630677112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1187,6 +1198,34 @@ PrefabInstance:
       propertyPath: m_FontData.m_BestFit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3621046396567943229}
+    - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AirAttackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CompanionController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 287459482, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_Text
       value: Attack Combo
@@ -1197,7 +1236,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427979387, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 608473652, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_Name
+      value: Companion2AttackCombo
       objectReference: {fileID: 0}
     - target: {fileID: 664512730, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_IsActive
@@ -1211,6 +1254,34 @@ PrefabInstance:
       propertyPath: m_FontData.m_BestFit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3621046396567943229}
+    - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChargedAttackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CompanionController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1004257183, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_Text
       value: Attack Combo
@@ -1218,6 +1289,62 @@ PrefabInstance:
     - target: {fileID: 1004257183, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_FontData.m_BestFit
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060255577, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060255577, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060255577, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3621046396567943229}
+    - target: {fileID: 1060255577, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060255577, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AirDashButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060255577, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CompanionController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060255577, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165085746, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165085746, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165085746, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3621046396567943229}
+    - target: {fileID: 1165085746, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165085746, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DistanceAttackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165085746, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CompanionController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165085746, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1363259844, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_Text
@@ -1242,6 +1369,38 @@ PrefabInstance:
     - target: {fileID: 1418711812, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_FontData.m_BestFit
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517881024, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_Name
+      value: Companion1AttackCombo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517881026, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517881026, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517881026, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3621046396567943229}
+    - target: {fileID: 1517881026, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517881026, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AttackComboButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517881026, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CompanionController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517881026, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1675661075, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_Text
