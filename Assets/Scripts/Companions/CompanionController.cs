@@ -23,7 +23,7 @@ public class CompanionController : MonoBehaviour
     public Transform groundPoint;
 
     //Booleanas para compenetrar con player
-    bool airDash, chargedAttack, attackCombo, airAttack, distanceAttack;
+    public bool airDash, chargedAttack, attackCombo, airAttack, distanceAttack;
     //Array para guardar que booleanas están activas
     string[] activeAbilities = new string[3];
 

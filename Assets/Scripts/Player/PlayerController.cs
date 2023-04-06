@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D theRB;
 
     //Dash
-    bool isDashing, canDash = true;
+    bool isDashing, canDash = true, canAirDash1 = true, canAirDash2 = true;
     public float dashForce, dashLength, dashWaitTime;
     
 
@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     //Variable para saber si el jugador se puede mover o no
     private bool canPlay;
+
+    //Referencia a los compañeros
+    public GameObject companion1, companion2;
 
     //Singleton
     public static PlayerController sharedInstance;
@@ -91,65 +94,77 @@ public class PlayerController : MonoBehaviour
 
 
             if (!isDashing)
-            {
-           
-            
+            {            
 
-                    if (!isHurt)
-                    {
+                if (!isHurt)
+                {
                 
-                        //El movimiento del player
-                        theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
+                    //El movimiento del player
+                    theRB.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), theRB.velocity.y);
 
-                         //Giramos el sprite del jugador según su dirección de movimiento
-                         //Si el jugador se mueve a la izquierda
-                         if (theRB.velocity.x < 0)
-                         {
-                                //No cambiamos el sprite
-                                theSR.flipX = false;
-                                //El jugador mira a la izquierda 
-                                isLeft = true;
-                         }
-                         else if (theRB.velocity.x > 0)
-                         {
-                                theSR.flipX = true;
-                                isLeft = false;
-                         }
+                    //Giramos el sprite del jugador según su dirección de movimiento
+                    //Si el jugador se mueve a la izquierda
+                    if (theRB.velocity.x < 0)
+                    {
+                        //No cambiamos el sprite
+                        theSR.flipX = false;
+                        //El jugador mira a la izquierda 
+                        isLeft = true;
+                    }
+                    else if (theRB.velocity.x > 0)
+                    {
+                        theSR.flipX = true;
+                        isLeft = false;
+                    }
 
                     
-                    }
+                }
 
             
 
-                    //El salto y el ground dash
-                    if (isGrounded)
+                //El salto y el ground dash
+                if (isGrounded)
+                {
+                    //Saltar
+                    doubleJump = true;
+                    if (Input.GetButtonDown("Jump"))
                     {
-                        //Saltar
-                        doubleJump = true;
-                        if (Input.GetButtonDown("Jump"))
-                        {
-                            //El salto en sí
-                            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                        }
+                        //El salto en sí
+                        theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                    }
 
-                        //Para hacer dash
-                        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-                        {
-                            GroundDash();
-                        }
+                    canAirDash1 = true;
+                    canAirDash2 = true;
+                    //Para hacer dash
+                    if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+                    {
+                        Dash();
+                    }
 
                     }
-                    else
+                else
+                {
+                    //Saltar
+                    if (doubleJump && Input.GetButtonDown("Jump"))
                     {
-                        //Saltar
-                        if (doubleJump && Input.GetButtonDown("Jump"))
-                        {
-                            //El jugador salta
-                            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
-                            //Y no puede volver a hacerlo
-                            doubleJump = false;
-                        }
+                        //El jugador salta
+                        theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                        //Y no puede volver a hacerlo
+                        doubleJump = false;
                     }
+
+                    //Dash
+                    if (Input.GetKeyDown(KeyCode.LeftShift) && companion1.GetComponent<CompanionController>().airDash && !isGrounded && canAirDash1)
+                    {
+                        Dash();
+                        canAirDash1 = false;
+                    }
+                    else if(Input.GetKeyDown(KeyCode.LeftShift) && companion2.GetComponent<CompanionController>().airDash && !isGrounded && canAirDash2)
+                    {
+                        Dash();
+                        canAirDash2 = false;
+                    }
+                }
 
             
        
@@ -201,13 +216,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //Método para hacer dash en el suelo
-    public void GroundDash()
+    public void Dash()
     {
-        StartCoroutine(GroundDashCO());
+        StartCoroutine(DashCO());
     }
 
     //Corrutina para hacer dash
-    public IEnumerator GroundDashCO()
+    public IEnumerator DashCO()
     {
         isDashing = true;
         canDash = false;
