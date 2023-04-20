@@ -310,6 +310,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3621046397262343703, guid: 90214351716bbcf498c5b0697d08bdbc, type: 3}
+      propertyPath: objetivePos.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 90214351716bbcf498c5b0697d08bdbc, type: 3}
@@ -1647,9 +1651,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 132613873}
     - target: {fileID: 6113906262177937525, guid: 9ef31cf28c045754bb80866add0720f4, type: 3}
+      propertyPath: airDashLenght
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113906262177937525, guid: 9ef31cf28c045754bb80866add0720f4, type: 3}
       propertyPath: companionMenu
       value: 
       objectReference: {fileID: 275792972}
+    - target: {fileID: 6113906262177937525, guid: 9ef31cf28c045754bb80866add0720f4, type: 3}
+      propertyPath: groundDashLength
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef31cf28c045754bb80866add0720f4, type: 3}

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     //Dash
     bool isDashing, canDash = true, canAirDash1 = true, canAirDash2 = true;
-    public float dashForce, dashLength, dashWaitTime;
+    public float dashForce, groundDashLength, airDashLenght, dashWaitTime;
     
 
     //Variable para saber si el jugador está en el suelo
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
                     //Para hacer dash
                     if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
                     {
-                        Dash();
+                        Dash(groundDashLength);
                     }
 
                     }
@@ -156,12 +156,12 @@ public class PlayerController : MonoBehaviour
                     //Dash
                     if (Input.GetKeyDown(KeyCode.LeftShift) && companion1.GetComponent<CompanionController>().airDash && !isGrounded && canAirDash1)
                     {
-                        Dash();
+                        Dash(airDashLenght);
                         canAirDash1 = false;
                     }
                     else if(Input.GetKeyDown(KeyCode.LeftShift) && companion2.GetComponent<CompanionController>().airDash && !isGrounded && canAirDash2)
                     {
-                        Dash();
+                        Dash(airDashLenght);
                         canAirDash2 = false;
                     }
                 }
@@ -216,18 +216,18 @@ public class PlayerController : MonoBehaviour
     }
 
     //Método para hacer dash en el suelo
-    public void Dash()
+    public void Dash(float length)
     {
-        StartCoroutine(DashCO());
+        StartCoroutine(DashCO(length));
     }
 
     //Corrutina para hacer dash
-    public IEnumerator DashCO()
+    public IEnumerator DashCO(float length)
     {
         isDashing = true;
         canDash = false;
         theRB.gravityScale = 0f;
-        GetComponent<PlayerHealthController>().ChangeInvinvibleCounter(dashLength);
+        GetComponent<PlayerHealthController>().ChangeInvinvibleCounter(length);
         if(isLeft)
         {
             theRB.velocity = new Vector2(-dashForce, 0f);
@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
         {
             theRB.velocity = new Vector2(dashForce, 0f);
         }
-        yield return new WaitForSeconds(dashLength);
+        yield return new WaitForSeconds(length);
         isDashing = false;
         theRB.gravityScale = 3f;
         yield return new WaitForSeconds(dashWaitTime);

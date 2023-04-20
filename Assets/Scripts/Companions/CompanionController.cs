@@ -25,7 +25,7 @@ public class CompanionController : MonoBehaviour
     //Booleanas para compenetrar con player
     public bool airDash, chargedAttack, attackCombo, airAttack, distanceAttack;
     //Array para guardar que booleanas están activas
-    string[] activeAbilities = new string[3];
+    public string[] activeAbilities = new string[3];
 
     //Singleton
     public static CompanionController sharedInstance;
@@ -82,12 +82,12 @@ public class CompanionController : MonoBehaviour
         if (airDash)
         {
             airDash = false;
-            DeactivateAbilities(airDash);
+            DeactivateAbilities("airDash");
         }
         else
         {
             airDash = true;
-            ActivateAbility(airDash);
+            ActivateAbility("airDash");
         }
     }
 
@@ -97,12 +97,12 @@ public class CompanionController : MonoBehaviour
         if(chargedAttack)
         { 
             chargedAttack = false;
-            DeactivateAbilities(chargedAttack);
+            DeactivateAbilities("chargedAttack");
         }
         else
         {
             chargedAttack = true;
-            ActivateAbility(chargedAttack);
+            ActivateAbility("chargedAttack");
         }
     }
 
@@ -112,12 +112,12 @@ public class CompanionController : MonoBehaviour
         if(attackCombo)
         {
             attackCombo = false;
-            DeactivateAbilities(attackCombo);
+            DeactivateAbilities("attackCombo");
         }
         else
         {
             attackCombo = true;
-            ActivateAbility(attackCombo);
+            ActivateAbility("attackCombo");
         }
     }
 
@@ -127,12 +127,12 @@ public class CompanionController : MonoBehaviour
         if(airAttack)
         {
             airAttack = false;
-            DeactivateAbilities(airAttack);
+            DeactivateAbilities("airAttack");
         }
         else
         {
             airAttack = true;
-            ActivateAbility(airAttack);
+            ActivateAbility("airAttack");
         }
     }
 
@@ -142,23 +142,23 @@ public class CompanionController : MonoBehaviour
         if(distanceAttack)
         {
             distanceAttack = false;
-            DeactivateAbilities(distanceAttack);
+            DeactivateAbilities("distanceAttack");
         }
         else
         {
             distanceAttack = true;
-            ActivateAbility(distanceAttack);
+            ActivateAbility("distanceAttack");
         }
     }
 
     //Método para comprobar si el booleano objetivo está dentro del array
-    public void ActivateAbility(bool ability)
+    public void ActivateAbility(string ability)
     {
         for (int a = 0; a < activeAbilities.Length; a++)
         {
-            if (activeAbilities[a] == null)
-                activeAbilities[a] = ability.ToString();
-            else if (a == activeAbilities.Length - 1)
+            if (activeAbilities[a] == null && !IsAbilityIn(ability))
+                activeAbilities[a] = ability;
+            else if (a == activeAbilities.Length - 1 && !IsAbilityIn(ability))
             {
                 switch (activeAbilities[0])
                 {
@@ -186,11 +186,11 @@ public class CompanionController : MonoBehaviour
     }
 
     //Método para desactivar habilidades
-    public void DeactivateAbilities(bool ability)
+    public void DeactivateAbilities(string ability)
     {
         for (int a = 0; a < activeAbilities.Length; a++)
         {
-            if (activeAbilities[a] == ability.ToString())
+            if (activeAbilities[a] == ability)
             {
                 switch(a)
                 {
@@ -217,6 +217,7 @@ public class CompanionController : MonoBehaviour
                         activeAbilities[1] = activeAbilities[2];
                         activeAbilities[2] = null;
                         break;
+
                     case 1:
                         switch (activeAbilities[1])
                         {
@@ -239,6 +240,7 @@ public class CompanionController : MonoBehaviour
                         activeAbilities[1] = activeAbilities[2];
                         activeAbilities[2] = null;
                         break;
+
                     case 2:
                         switch (activeAbilities[2])
                         {
@@ -261,8 +263,70 @@ public class CompanionController : MonoBehaviour
                         activeAbilities[2] = null;
                         break;
                 }
+
+                
             }
         }
+    }
+
+    //Método para saber si hay una habilidad dentro del array
+    public bool IsAbilityIn(string ability)
+    {
+        for(int a = 0; a < activeAbilities.Length; a++)
+        {
+            if (activeAbilities[a] == ability)
+            {
+                switch (a)
+                {
+                    case 0:
+                        switch (activeAbilities[0])
+                        {
+                            case "airDash":
+                                return true;
+                            case "chargedAttack":
+                                return true;
+                            case "attackCombo":
+                                return true;
+                            case "airAttack":
+                                return true;
+                            case "distanceAttack":
+                                return true;
+                        }
+                        break;
+                    case 1:
+                        switch (activeAbilities[1])
+                        {
+                            case "airDash":
+                                return true;
+                            case "chargedAttack":
+                                return true;
+                            case "attackCombo":
+                                return true;
+                            case "airAttack":
+                                return true;
+                            case "distanceAttack":
+                                return true;
+                        }
+                        break;
+                    case 2:
+                        switch (activeAbilities[2])
+                        {
+                            case "airDash":
+                                return true;
+                            case "chargedAttack":
+                                return true;
+                            case "attackCombo":
+                                return true;
+                            case "airAttack":
+                                return true;
+                            case "distanceAttack":
+                                return true;
+                        }
+                        break;
+                }
+            }
+        }
+        return false;
     }
     
 }
