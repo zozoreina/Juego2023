@@ -25,7 +25,7 @@ public class CompanionController : MonoBehaviour
     //Booleanas para compenetrar con player
     public bool airDash, chargedAttack, attackCombo, airAttack, distanceAttack;
     //Array para guardar que booleanas están activas
-    public string[] activeAbilities = new string[3];
+    string[] activeAbilities = new string[3];
 
     //Singleton
     public static CompanionController sharedInstance;
