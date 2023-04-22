@@ -62,6 +62,37 @@ Transform:
   m_Father: {fileID: 6113906261988711484}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2033984958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2033984959}
+  m_Layer: 7
+  m_Name: CompanionPosition2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2033984959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033984958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6113906261988711484}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5868049357561952701
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,8 +102,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6536251430819588592}
+  - component: {fileID: 7633987321213937146}
   m_Layer: 7
-  m_Name: AttackPoint
+  m_Name: MeleeHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,6 +125,32 @@ Transform:
   m_Father: {fileID: 6113906261988711484}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &7633987321213937146
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868049357561952701}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6113906261988711486
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +188,7 @@ Transform:
   - {fileID: 1319390550}
   - {fileID: 6536251430819588592}
   - {fileID: 1545424573}
+  - {fileID: 2033984959}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,7 +295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   dashForce: 13
-  dashLength: 1
+  groundDashLength: 1
+  airDashLenght: 0.5
   dashWaitTime: 1
   groundCheckPoint: {fileID: 1319390550}
   whatIsGround:
@@ -248,6 +308,9 @@ MonoBehaviour:
   knockBackForce: 5
   isHurt: 0
   pauseMenu: {fileID: 0}
+  companionMenu: {fileID: 0}
+  companion1: {fileID: 0}
+  companion2: {fileID: 0}
 --- !u!114 &8621339439650968504
 MonoBehaviour:
   m_ObjectHideFlags: 0
