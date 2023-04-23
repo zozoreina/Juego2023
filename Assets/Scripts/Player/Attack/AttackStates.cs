@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackStates
+public abstract class AttackStates
 {
-    public void OnStart(AttackStateMachine stateMachine)
+    protected float time;
+    
+    public virtual void OnStart()
     {
 
     }
 
-    public void OnUpdate()
+    public virtual void OnUpdate()
     {
-
+        time += Time.deltaTime;
     }
 
-    public void OnExit()
+    public virtual void OnExit()
     {
 
     }

@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground3 : MonoBehaviour
+public class Ground3 : MeleBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnStart()
     {
-        
+        base.OnStart();
+
+        //Configuración del ataque
+        duration = .75f;
+        anim.SetTrigger("Attack3");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnUpdate()
     {
-        
+        base.OnUpdate();
+
+        //Resolución del ataque
+        if (time >= duration)
+        {
+            if (shouldCombo && PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().attackCombo)
+                StateMachine.setNextState(new Ground4());
+            else if (shouldCombo && PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().attackCombo && !PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().attackCombo)
+                StateMachine.setNextState(new Ground5());
+            else
+                StateMachine.setNextStateToMain();
+
+        }
     }
 }

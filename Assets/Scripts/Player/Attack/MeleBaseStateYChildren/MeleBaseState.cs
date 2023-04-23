@@ -4,20 +4,39 @@ using UnityEngine;
 
 public class MeleBaseState : AttackStates
 {
-    //Referencia al animador
-    public Animator anim;
+    //Referencia al Animator
+    protected Animator anim;
+    //Referencia a la Clase AttackStateMachine
+    protected AttackStateMachine StateMachine;
 
     //Duración de los estados antes de pasar al siguiente
     public float duration;
     //Variable que cuemprueba si continua el siguiente ataque de la secuencia
-    bool shouldCombo;
+    protected bool shouldCombo;
     //Variable para saber que ataque de la secuencia reproducir
-    int attackIndex;
+    protected int attackIndex;
 
-    public void OnEnter(AttackStateMachine stateMachine)
+    public override void OnStart()
     {
-        base.OnStart(stateMachine);
-
+        base.OnStart();
+        anim = PlayerController.sharedInstance.GetComponent<Animator>();
     }
+
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            shouldCombo = true;
+        }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+    }
+
+
 
 }

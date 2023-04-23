@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground5 : MonoBehaviour
+public class Ground5 : MeleBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnStart()
     {
-        
+        base.OnStart();
+
+        //Configuración del ataque
+        duration = .5f;
+        anim.SetTrigger("Attack5");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnUpdate()
     {
-        
+        base.OnUpdate();
+
+        //Resolución del ataque
+        if (time >= duration)
+            StateMachine.setNextStateToMain();
     }
 }
