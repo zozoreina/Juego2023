@@ -17,6 +17,9 @@ public class AttackStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (nextState != null)
+            SetNextState(nextState);
+
         if (currentState != null)
             currentState.OnUpdate();
     }
