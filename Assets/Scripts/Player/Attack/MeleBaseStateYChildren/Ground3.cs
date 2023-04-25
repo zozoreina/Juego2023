@@ -21,11 +21,11 @@ public class Ground3 : MeleBaseState
         if (time >= duration)
         {
             if (shouldCombo && PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().attackCombo)
-                StateMachine.setNextState(new Ground4());
+                StateMachine.SetNextState(new Ground4());
             else if (shouldCombo && PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().attackCombo && !PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().attackCombo)
-                StateMachine.setNextState(new Ground5());
+                StateMachine.SetNextState(new Ground5());
             else
-                StateMachine.setNextStateToMain();
+                StateMachine.SetNextStateToMain();
 
         }
     }

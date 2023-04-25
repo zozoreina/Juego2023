@@ -12,7 +12,7 @@ public class PlayerHealthController : MonoBehaviour
     public float currentHealth;
 
     //Referencia al SpriteRenderer
-    public SpriteRenderer theSR;
+    SpriteRenderer theSR;
 
     //Singleton
     public static PlayerHealthController sharedInstance;

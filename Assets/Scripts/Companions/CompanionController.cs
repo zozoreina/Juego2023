@@ -6,6 +6,8 @@ public class CompanionController : MonoBehaviour
 {
     //Referencia al rigid body del compañero
     Rigidbody2D theRB;
+    //Referencia al animator
+    public Animator anim;
 
     //Velocidad de movimiento
     public float moveSpeed;

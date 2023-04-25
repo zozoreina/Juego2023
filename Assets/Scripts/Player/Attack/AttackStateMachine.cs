@@ -9,6 +9,11 @@ public class AttackStateMachine : MonoBehaviour
     //Estado siguiente
     AttackStates nextState;
 
+    private void Awake()
+    {
+        SetNextStateToMain();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -17,7 +22,7 @@ public class AttackStateMachine : MonoBehaviour
     }
 
     //Método para cambiar al siguiente estado
-    public void setNextState(AttackStates newState)
+    public void SetNextState(AttackStates newState)
     {
         currentState.OnExit();
         currentState = newState;
@@ -25,7 +30,7 @@ public class AttackStateMachine : MonoBehaviour
     }
 
     //Método para cambiar al estado principal
-    public void setNextStateToMain()
+    public void SetNextStateToMain()
     {
         nextState = new IdleCombat();
     }

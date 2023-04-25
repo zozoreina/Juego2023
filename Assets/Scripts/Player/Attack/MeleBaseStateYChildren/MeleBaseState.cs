@@ -27,9 +27,7 @@ public class MeleBaseState : AttackStates
         base.OnUpdate();
 
         if (Input.GetButtonDown("Fire1"))
-        {
             shouldCombo = true;
-        }
     }
 
     public override void OnExit()

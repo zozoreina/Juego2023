@@ -10,7 +10,7 @@ public class Ground5 : MeleBaseState
 
         //Configuración del ataque
         duration = .5f;
-        anim.SetTrigger("Attack5");
+        PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().anim.SetTrigger("ComboAttack");
     }
 
     public override void OnUpdate()
@@ -19,6 +19,6 @@ public class Ground5 : MeleBaseState
 
         //Resolución del ataque
         if (time >= duration)
-            StateMachine.setNextStateToMain();
+            StateMachine.SetNextStateToMain();
     }
 }

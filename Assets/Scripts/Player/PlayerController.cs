@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D theRB;
 
     //Dash
-    bool isDashing, canDash = true, canAirDash1 = true, canAirDash2 = true;
+    bool isDashing, canDash = true, canAirDash1, canAirDash2;
     public float dashForce, groundDashLength, airDashLenght, dashWaitTime;
     
 
     //Variable para saber si el jugador está en el suelo
-    private bool isGrounded;
+    public bool isGrounded;
     //Punto por debajo del jugador que tomamos como referencia para detectar el suelo
     public Transform groundCheckPoint;
     //Variable para detectar el Layer de suelo

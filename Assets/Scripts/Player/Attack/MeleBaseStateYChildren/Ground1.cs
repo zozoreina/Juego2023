@@ -21,9 +21,9 @@ public class Ground1 : MeleBaseState
         if (time >= duration)
         {
             if (shouldCombo)
-                StateMachine.setNextState(new Ground2());
+                StateMachine.SetNextState(new Ground2());
             else
-                StateMachine.setNextStateToMain();
+                StateMachine.SetNextStateToMain();
                 
         }
     }
