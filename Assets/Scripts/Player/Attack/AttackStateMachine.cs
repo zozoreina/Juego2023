@@ -18,18 +18,27 @@ public class AttackStateMachine : MonoBehaviour
     void Update()
     {
         if (nextState != null)
-            SetNextState(nextState);
+            SetState(nextState);
 
         if (currentState != null)
             currentState.OnUpdate();
     }
 
+    //Método para cambiar el estado actual
+    public void SetState(AttackStates newState)
+    {
+        nextState = null;
+        if (currentState != null)
+            currentState.OnExit();
+        currentState = newState;
+        currentState.OnStart();
+    }
+
     //Método para cambiar al siguiente estado
     public void SetNextState(AttackStates newState)
     {
-        currentState.OnExit();
-        currentState = newState;
-        currentState.OnStart();
+        if (newState != null)
+            nextState = newState;
     }
 
     //Método para cambiar al estado principal
