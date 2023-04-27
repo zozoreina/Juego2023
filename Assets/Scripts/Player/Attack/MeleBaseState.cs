@@ -4,42 +4,102 @@ using UnityEngine;
 
 public abstract class MeleBaseState
 {
+    //Lista de los estados a los que podemos ir
+    public enum STATE
+    {
+        IDLE, ATTACKENTRY, ATTACKCOMBO, ATTACKEXIT, COMP1ATTACK, COMP2ATTACK
+    };
+
+    //Lista de los eventos que tendran lugar dentro de los estados
+    public enum EVENT
+    {
+        Start, Update, Exit
+    };
+
     //Referencia al Animator
     protected Animator anim;
     //Referencia a la Máquina de estados
     public AttackStateMachine StateMachine;
+    //Referencia para conocer el siguiente Estado al que ir
+    protected MeleBaseState nextState;
+    
 
+    //Nombre del estado actual
+    public STATE name;
+    //Para conocer el evento actual
+    protected EVENT stage;
     //Duración de los estados antes de pasar al siguiente
-    public float duration;
+    protected float duration;
     //Variable que cuemprueba si continua el siguiente ataque de la secuencia
     protected bool shouldCombo;
-    //Variable para saber que ataque de la secuencia reproducir
-    protected int attackIndex;
     //Variable donde se establece el tiempo que duran los estados activos
     protected float time;
-    
+
+
+    //El constructor
+    public MeleBaseState(float _duration, float _time, bool _shouldCombo, Animator _anim)
+    {
+        _duration = duration;
+        _time = time;
+        _shouldCombo = shouldCombo;
+        _anim = anim;
+        stage = EVENT.Start;
+    }
+
     public virtual void OnStart()
     {
-        anim = PlayerController.sharedInstance.GetComponent<Animator>();
+        stage = EVENT.Update;
     }
 
     public virtual void OnUpdate()
     {
+        stage = EVENT.Update;
+
         time += Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1") && anim.GetBool("AttackWindow"))
+        if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded) 
             shouldCombo = true;
             
     }
 
     public virtual void OnExit()
     {
+        stage = EVENT.Exit;
+    }
 
+    
+    //Método por el que cambiamos entre estados
+    public MeleBaseState Process()
+    {
+        //Si el evento en el que estoy es el de entrada, hago el método correspondiente de entrada
+        if (stage == EVENT.Start) OnStart();
+        //Si el evento en el que estoy es el de update, hago el método correspondiente
+        if (stage == EVENT.Update) OnUpdate();
+        //Si el evento en el que estoy es el de salida, hago el método correspondiente
+        if (stage == EVENT.Exit)
+        {
+            OnExit();
+            //Y devolvemos el siguiente estado al que ir
+            return nextState;
+        }
+        //Devolvemos el resultado del método
+        return this;
+    }
+
+    //Método por el que volvemos al estado principal
+    public void SetNextStateToMain()
+    {
+        nextState = new IdleCombat(duration, time, shouldCombo, anim);
     }
 }
 
 public class IdleCombat : MeleBaseState
 {
+    public IdleCombat(float _duration, float _time, bool _shouldCombo, Animator _anim) : base(_duration, _time, _shouldCombo, _anim)
+    {
+        name = STATE.IDLE;
+    }
+
     public override void OnStart()
     {
         base.OnStart();
@@ -48,10 +108,11 @@ public class IdleCombat : MeleBaseState
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (Input.GetButtonDown("Fire1"))
+        if (shouldCombo)
         {
             Debug.Log("IdleEstabaActivo");
-            StateMachine.SetNextState(new Ground1());
+            nextState = new Ground1(duration, time, shouldCombo, anim);
+            stage = EVENT.Exit;
         }
     }
     public override void OnExit()
@@ -62,6 +123,12 @@ public class IdleCombat : MeleBaseState
 
 public class Ground1 : MeleBaseState
 {
+    public Ground1(float _duration, float _time, bool _shouldCombo, Animator _anim) : base(_duration, _time, _shouldCombo, _anim)
+    {
+        name = STATE.ATTACKENTRY;
+    }
+
+
     public override void OnStart()
     {
         base.OnStart();
@@ -79,16 +146,25 @@ public class Ground1 : MeleBaseState
         if (time >= duration)
         {
             if (shouldCombo)
-                StateMachine.SetNextState(new Ground2());
+                nextState = new Ground2(duration, time, shouldCombo, anim);
             else
-                StateMachine.SetNextStateToMain();
+                SetNextStateToMain();
 
         }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
     }
 }
 
 public class Ground2 : MeleBaseState
 {
+    public Ground2(float _duration, float _time, bool _shouldCombo, Animator _anim) : base(_duration, _time, _shouldCombo, _anim)
+    {
+        name = STATE.ATTACKCOMBO;
+    }
     public override void OnStart()
     {
         base.OnStart();
@@ -106,15 +182,25 @@ public class Ground2 : MeleBaseState
         if (time >= duration)
         {
             if (shouldCombo)
-                StateMachine.SetNextState(new Ground3());
+                nextState = new Ground3(duration, time, shouldCombo, anim);
             else
-                StateMachine.SetNextStateToMain();
+                SetNextStateToMain();
 
         }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
     }
 }
 public class Ground3 : MeleBaseState
 {
+    public Ground3(float _duration, float _time, bool _shouldCombo, Animator _anim) : base(_duration, _time, _shouldCombo, _anim)
+    {
+        name = STATE.ATTACKEXIT;
+    }
+
     public override void OnStart()
     {
         base.OnStart();
@@ -132,18 +218,28 @@ public class Ground3 : MeleBaseState
         if (time >= duration)
         {
             if (shouldCombo && PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().attackCombo)
-                StateMachine.SetNextState(new Ground4());
+                nextState = new Ground4(duration, time, shouldCombo, anim);
             else if (shouldCombo && PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().attackCombo && !PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().attackCombo)
-                StateMachine.SetNextState(new Ground5());
+                nextState = new Ground5(duration, time, shouldCombo, anim);
             else
-                StateMachine.SetNextStateToMain();
+                SetNextStateToMain();
 
         }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
     }
 }
 
 public class Ground4 : MeleBaseState
 {
+    public Ground4(float _duration, float _time, bool _shouldCombo, Animator _anim) : base(_duration, _time, _shouldCombo, _anim)
+    {
+        name = STATE.COMP1ATTACK;
+    }
+
     public override void OnStart()
     {
         base.OnStart();
@@ -161,16 +257,26 @@ public class Ground4 : MeleBaseState
         if (time >= duration)
         {
             if (shouldCombo && PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().attackCombo)
-                StateMachine.SetNextState(new Ground5());
+                nextState = new Ground5(duration, time, shouldCombo, anim);
             else
-                StateMachine.SetNextStateToMain();
+                SetNextStateToMain();
 
         }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
     }
 }
 
 public class Ground5 : MeleBaseState
 {
+    public Ground5(float _duration, float _time, bool _shouldCombo, Animator _anim) : base(_duration, _time, _shouldCombo, _anim)
+    {
+        name = STATE.COMP2ATTACK;
+    }
+
     public override void OnStart()
     {
         base.OnStart();
@@ -186,6 +292,11 @@ public class Ground5 : MeleBaseState
 
         //Resolución del ataque
         if (time >= duration)
-            StateMachine.SetNextStateToMain();
+            SetNextStateToMain();
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
     }
 }

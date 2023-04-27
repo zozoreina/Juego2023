@@ -6,48 +6,25 @@ public class AttackStateMachine : MonoBehaviour
 {
     //Estado actual
     public MeleBaseState currentState;
-    //Estado siguiente
-    MeleBaseState nextState;
-    //Estado principal
-    MeleBaseState mainState;
+    //Referencia al Animator
+    Animator anim;
 
-    private void Awake()
+    //Variable de duración de estados
+    float duration;
+    //Variable que guarda el tiempo
+    float time;
+    //Variable para saber si puede atacar
+    bool shouldCombo;
+
+    private void Start()
     {
-        SetNextStateToMain();
+        anim = GetComponent<Animator>();
+        currentState = new IdleCombat(duration, time, shouldCombo, anim);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (nextState != null)
-            SetState(nextState);
-
-        if (currentState != null)
-            currentState.OnUpdate();
+        currentState = currentState.Process();
     }
 
-    //Método para cambiar el estado actual
-    public void SetState(MeleBaseState newState)
-    {
-        nextState = null;
-        if (currentState != null)
-            currentState.OnExit();
-        currentState = newState;
-        currentState.OnStart();
-    }
-
-    //Método para cambiar al siguiente estado
-    public void SetNextState(MeleBaseState newState)
-    {
-        if (newState != null)
-            nextState = newState;
-    }
-
-    //Método para cambiar al estado principal
-    public void SetNextStateToMain()
-    {
-        nextState = mainState;
-    }
-
-    
 }
