@@ -243,8 +243,16 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
+
+    //Métodos para activar y desactivar las ventanas de ataque del arma
+    public void OpenOrCloseAttackWindow()
+    {
+        if (anim.GetBool("AttackWindow") == false)
+            anim.SetBool("AttackWindow", true);
+        else
+            anim.SetBool("AttackWindow", false);
+    }
     
 
-    
 
 }

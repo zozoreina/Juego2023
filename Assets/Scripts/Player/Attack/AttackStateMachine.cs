@@ -5,9 +5,11 @@ using UnityEngine;
 public class AttackStateMachine : MonoBehaviour
 {
     //Estado actual
-    public AttackStates currentState;
+    public MeleBaseState currentState;
     //Estado siguiente
-    AttackStates nextState;
+    MeleBaseState nextState;
+    //Estado principal
+    MeleBaseState mainState;
 
     private void Awake()
     {
@@ -25,7 +27,7 @@ public class AttackStateMachine : MonoBehaviour
     }
 
     //Método para cambiar el estado actual
-    public void SetState(AttackStates newState)
+    public void SetState(MeleBaseState newState)
     {
         nextState = null;
         if (currentState != null)
@@ -35,7 +37,7 @@ public class AttackStateMachine : MonoBehaviour
     }
 
     //Método para cambiar al siguiente estado
-    public void SetNextState(AttackStates newState)
+    public void SetNextState(MeleBaseState newState)
     {
         if (newState != null)
             nextState = newState;
@@ -44,6 +46,8 @@ public class AttackStateMachine : MonoBehaviour
     //Método para cambiar al estado principal
     public void SetNextStateToMain()
     {
-        nextState = new IdleCombat();
+        nextState = mainState;
     }
+
+    
 }
