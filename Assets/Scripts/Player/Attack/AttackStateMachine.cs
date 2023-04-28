@@ -5,21 +5,14 @@ using UnityEngine;
 public class AttackStateMachine : MonoBehaviour
 {
     //Estado actual
-    public MeleBaseState currentState;
+    MeleBaseState currentState;
     //Referencia al Animator
     Animator anim;
-
-    //Variable de duración de estados
-    float duration;
-    //Variable que guarda el tiempo
-    float time;
-    //Variable para saber si puede atacar
-    bool shouldCombo;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        currentState = new IdleCombat(duration, time, shouldCombo, anim);
+        currentState = new IdleCombat(gameObject ,anim);
     }
 
     private void Update()
