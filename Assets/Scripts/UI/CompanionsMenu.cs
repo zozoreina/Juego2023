@@ -17,21 +17,16 @@ public class CompanionsMenu : MonoBehaviour
     //Variable para saber si estás conversando
     public bool isConversationOn;
     //Variables para saber que compañero está activo en la conversación
-    bool comp1, comp2; //No hacen nada de momento
+    //bool comp1, comp2; No hacen nada de momento
 
     //Referencia al Menu de pausa
     public PauseMenu pauseMenu;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(PlayerController.sharedInstance.transform.position, CompanionController.sharedInstance.transform.position) < 3 && PlayerController.sharedInstance.isLeft && !isConversationOn && !pauseMenu.isPaused/*ME queda por añadir que no puede estar en combate*/)
+        if (Vector3.Distance(PlayerController.sharedInstance.transform.position, CompanionController.sharedInstance.transform.position) < 3.5f && PlayerController.sharedInstance.isLeft && !isConversationOn && !pauseMenu.isPaused/*ME queda por añadir que no puede estar en combate*/)
         {
             infoPanel.SetActive(true);
             

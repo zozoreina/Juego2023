@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     public CompanionsMenu companionMenu;
 
     //Variable para saber si el jugador se puede mover o no
-    private bool canPlay;
+    public bool canPlay;
 
     //Referencia a los compañeros
     public GameObject companion1, companion2;

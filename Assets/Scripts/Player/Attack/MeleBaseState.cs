@@ -52,11 +52,7 @@ public abstract class MeleBaseState
 
     public virtual void OnUpdate()
     {
-        time += Time.deltaTime;
-        if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded)
-            shouldCombo = true;
         stage = EVENT.Update;
-        
     }
 
     public virtual void OnExit()
@@ -110,6 +106,9 @@ public class IdleCombat : MeleBaseState
 
      public override void OnUpdate()
      {
+        time += Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded && PlayerController.sharedInstance.canPlay)
+            shouldCombo = true;
         if (shouldCombo)
         {
             
@@ -147,7 +146,9 @@ public class Ground1 : MeleBaseState
 
     public override void OnUpdate()
     {
-        
+        time += Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded && PlayerController.sharedInstance.canPlay)
+            shouldCombo = true;
         //Resolución del ataque
         if (time >= duration)
         {
@@ -193,6 +194,10 @@ public class Ground2 : MeleBaseState
 
     public override void OnUpdate()
     {
+        time += Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded && PlayerController.sharedInstance.canPlay)
+            shouldCombo = true;
+
         //Resolución del ataque
         if (time >= duration)
         {
@@ -240,6 +245,10 @@ public class Ground3 : MeleBaseState
 
     public override void OnUpdate()
     {
+        time += Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded && PlayerController.sharedInstance.canPlay)
+            shouldCombo = true;
+
         //Resolución del ataque
         if (time >= duration)
         {
@@ -286,13 +295,16 @@ public class Ground4 : MeleBaseState
         duration = .5f;
         time = 0f;
         shouldCombo = false;
-        PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().anim.SetTrigger("ComboAttack");
+        PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().anim.SetBool("ComboAttack", true);
         base.OnStart();
 
     }
 
     public override void OnUpdate()
     {
+        time += Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded && PlayerController.sharedInstance.canPlay)
+            shouldCombo = true;
 
         //Resolución del ataque y preparación del siguiente estado
         if (time >= duration)
@@ -316,6 +328,7 @@ public class Ground4 : MeleBaseState
     public override void OnExit()
     {
         Debug.Log("WasGround4");
+        PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().anim.SetBool("ComboAttack", false);
         base.OnExit();
     }
 }
@@ -335,17 +348,17 @@ public class Ground5 : MeleBaseState
         duration = .5f;
         time = 0f;
         shouldCombo = false;
-        PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().anim.SetTrigger("ComboAttack");
+        PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().anim.SetBool("ComboAttack", true);
         base.OnStart();
 
     }
 
     public override void OnUpdate()
     {
+        time += Time.deltaTime;
         //Resolución del ataque
         if (time >= duration)
         {
-
             SetNextStateToMain();
             stage = EVENT.Exit;
         }
@@ -353,6 +366,8 @@ public class Ground5 : MeleBaseState
 
     public override void OnExit()
     {
+        PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().anim.SetBool("ComboAttack", false);
+        Debug.Log("WasGround5");
         base.OnExit();
     }
 }

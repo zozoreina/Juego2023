@@ -9,14 +9,19 @@ public class CompanionController : MonoBehaviour
     //Referencia al animator
     public Animator anim;
 
-    //Velocidad de movimiento
-    public float moveSpeed;
-
     //Referencia a la posición a la que se quieren mover los compañeros
     public Transform[] objetivePos;
     //Referencia al objetivo actual de la posición
     int currentPos;
+    //Referencia a la posición previa
+    //public int prevPos;
 
+    //Velocidad de movimiento
+    float moveSpeed;
+    //Velocidad de movimiento al ir a ayudar al jugador
+    public float helperMoveSpeed;
+    //Velocidad de movimiento normal
+    public float normalMoveSpeed;
     //Dirección en la que mira el compañero y Saber si está tocando el suelo
     bool isLeft, isGrounded;
     //Variable para detectar el Layer de suelo
@@ -28,6 +33,10 @@ public class CompanionController : MonoBehaviour
     public bool airDash, chargedAttack, attackCombo, airAttack, distanceAttack;
     //Array para guardar que booleanas están activas
     string[] activeAbilities = new string[3];
+    //Variable para saber si el compañero ha atacado o no
+    bool hasAttacked;
+
+    
 
     //Singleton
     public static CompanionController sharedInstance;
@@ -45,6 +54,9 @@ public class CompanionController : MonoBehaviour
     void Start()
     {
         theRB = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        currentPos = 0;
+        moveSpeed = normalMoveSpeed;
     }
 
     // Update is called once per frame
@@ -74,8 +86,26 @@ public class CompanionController : MonoBehaviour
             theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);          
         }
 
+        //Para comprobar si los ataques se realizan o no
+        if (anim.GetBool("ComboAttack") == true)
+            MoveToAttack();
+        else if (hasAttacked && anim.GetBool("ComboAttack") == false)
+            MoveAfterAttack();
 
+    }
 
+    //Método por el que el compañero se mueve a la zona de ataque
+    public void MoveToAttack()
+    {
+        moveSpeed = helperMoveSpeed;
+        currentPos = 1;
+        hasAttacked = true;
+    }
+    public void MoveAfterAttack()
+    {
+        moveSpeed = normalMoveSpeed;
+        currentPos = 0;
+        hasAttacked = false;
     }
 
     //Método para el botón Air Dash
