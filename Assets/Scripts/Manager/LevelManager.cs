@@ -38,15 +38,15 @@ public class LevelManager : MonoBehaviour
     }
 
     //Método para respawnear al compañero
-    public void respawnCompanion()
+    public void respawnCompanion(GameObject Companion)
     {
-        StartCoroutine(respawnCompanionCo());
+        StartCoroutine(respawnCompanionCo(Companion));
     }
 
     //Método para respawnear enemigos
-    public void respawnEnemy()
+    public void respawnEnemy(GameObject Enemy)
     {
-        StartCoroutine(respawnEnemyCo());
+        StartCoroutine(respawnEnemyCo(Enemy));
     }
 
     IEnumerator respawnPlayerCo()
@@ -63,19 +63,19 @@ public class LevelManager : MonoBehaviour
         PlayerController.sharedInstance.transform.position = CheckpoitnController.sharedInstance.spawnPoint;
     }
 
-    IEnumerator respawnCompanionCo()
+    IEnumerator respawnCompanionCo(GameObject Companion)
     {
-        CompanionController.sharedInstance.gameObject.SetActive(false);
+        Companion.gameObject.SetActive(false);
         yield return new WaitForSeconds(waitToRespawn);
-        CompanionController.sharedInstance.gameObject.SetActive(true);
-        CompanionController.sharedInstance.transform.position = CompanionController.sharedInstance.objetivePos[0].position;
+        Companion.gameObject.SetActive(true);
+        Companion.transform.position = Companion.GetComponent<CompanionController>().objetivePos[0].transform.position;
     }
 
-    IEnumerator respawnEnemyCo()
+    IEnumerator respawnEnemyCo(GameObject Enemy)
     {
-        EnemyController.sharedInstance.gameObject.SetActive(false);
+        Enemy.gameObject.SetActive(false);
         yield return new WaitForSeconds(waitToRespawn);
-        EnemyController.sharedInstance.gameObject.SetActive(true);
-        EnemyController.sharedInstance.transform.position = EnemyController.sharedInstance.spawnPoint;
+        Enemy.gameObject.SetActive(true);
+        Enemy.transform.position = Enemy.GetComponent<EnemyController>().spawnPoint;
     }
 }

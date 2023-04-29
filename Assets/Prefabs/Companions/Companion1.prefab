@@ -125,7 +125,7 @@ Transform:
   - {fileID: 3621046396332667326}
   - {fileID: 512213293}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3621046397262343701
 SpriteRenderer:
@@ -195,8 +195,6 @@ MonoBehaviour:
   objetivePos:
   - {fileID: 0}
   - {fileID: 0}
-  currentPos: 0
-  prevPos: 0
   helperMoveSpeed: 20
   normalMoveSpeed: 10
   whatIsGround:

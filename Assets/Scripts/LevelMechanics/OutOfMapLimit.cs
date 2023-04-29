@@ -12,8 +12,8 @@ public class OutOfMapLimit : MonoBehaviour
             LevelManager.sharedInstance.respawnPlayer();
         }
         else if (collision.CompareTag("Companion"))
-            LevelManager.sharedInstance.respawnCompanion();
+            LevelManager.sharedInstance.respawnCompanion(collision.gameObject);
         else if (collision.CompareTag("Enemy"))
-            LevelManager.sharedInstance.respawnEnemy();
+            LevelManager.sharedInstance.respawnEnemy(collision.gameObject);
     }
 }

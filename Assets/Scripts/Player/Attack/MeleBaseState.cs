@@ -366,8 +366,8 @@ public class Ground5 : MeleBaseState
 
     public override void OnExit()
     {
-        PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().anim.SetBool("ComboAttack", false);
         Debug.Log("WasGround5");
+        PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().anim.SetBool("ComboAttack", false);
         base.OnExit();
     }
 }
