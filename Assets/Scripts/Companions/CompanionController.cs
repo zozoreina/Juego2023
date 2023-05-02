@@ -36,7 +36,8 @@ public class CompanionController : MonoBehaviour
     //Variable para saber si el compañero ha atacado o no
     bool hasAttacked;
 
-    
+    //Posición de las que salen las balas
+    public Transform BulletPoint1, BulletPoint2;
 
     //Singleton
     public static CompanionController sharedInstance;
@@ -86,6 +87,7 @@ public class CompanionController : MonoBehaviour
             theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);          
         }
 
+        
 
 
         //ANIMACIONES

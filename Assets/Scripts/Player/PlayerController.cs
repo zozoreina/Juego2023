@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     //Variable para saber si el enemigo ha hecho su ataque a distancia o no
     bool comp1DistanceAttack, comp2DistanceAttack;
     float comp1DistanceAttackCounter, comp2DistanceAttackCounter;
+    public GameObject Comp1Bullet, Comp2Bullet;
+    
 
     //Singleton
     public static PlayerController sharedInstance;
@@ -96,6 +98,30 @@ public class PlayerController : MonoBehaviour
             //Para saber si estamos tocando el suelo
             isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
 
+            //Para los ataques a distancia de los aliados
+            comp1DistanceAttackCounter -= Time.deltaTime;
+            comp2DistanceAttackCounter -= Time.deltaTime;
+
+            if (comp1DistanceAttackCounter <= 0)
+                comp1DistanceAttack = true;
+            else comp1DistanceAttack = false;
+
+            if (comp2DistanceAttackCounter <= 0)
+                comp2DistanceAttack = true;
+            else comp2DistanceAttack = false;
+
+            if (companion1.GetComponent<CompanionController>().distanceAttack && Input.GetButtonDown("Fire2") && comp1DistanceAttack)
+            {
+                comp1DistanceAttackCounter = 15f;
+                companion1.GetComponent<CompanionController>().anim.SetTrigger("DistanceAttack");
+                Instantiate(Comp1Bullet, companion1.GetComponent<CompanionController>().BulletPoint1);
+            }
+            if (companion2.GetComponent<CompanionController>().distanceAttack && Input.GetButtonDown("Fire2") && comp2DistanceAttack)
+            {
+                comp2DistanceAttackCounter = 2f;
+                companion2.GetComponent<CompanionController>().anim.SetTrigger("DistanceAttack");
+                Instantiate(Comp2Bullet, companion2.GetComponent<CompanionController>().BulletPoint2);
+            }
 
             if (!isDashing)
             {            
@@ -145,7 +171,7 @@ public class PlayerController : MonoBehaviour
                         Dash(groundDashLength);
                     }
 
-                    }
+                }
                 else
                 {
                     //Saltar
@@ -170,24 +196,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
 
-                //Para los ataques a distancia de los aliados
-                comp1DistanceAttackCounter -= Time.deltaTime;
-                comp2DistanceAttackCounter -= Time.deltaTime;
-                if (comp1DistanceAttackCounter <= 0)
-                    comp1DistanceAttack = true;
-                else comp1DistanceAttack = false;
-                if (comp2DistanceAttackCounter <= 0)
-                    comp2DistanceAttack = true;
-                else comp2DistanceAttack = false;
-                if (companion1.GetComponent<CompanionController>().distanceAttack && Input.GetButtonDown("Fire2"))
-                {
-                    comp1DistanceAttackCounter = 2f; 
-                    companion1.GetComponent<CompanionController>().anim.SetTrigger("DistanceAttack");
-                    //Instantiate()
-                }
-
-            
-       
+                
 
                 //Si el contador de knockback se ha vaciado
                 if (knockBackCounter <= 0)
