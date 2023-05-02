@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour
     //Referencia a los compañeros
     public GameObject companion1, companion2;
 
+    //Variable para saber si el enemigo ha hecho su ataque a distancia o no
+    bool comp1DistanceAttack, comp2DistanceAttack;
+    float comp1DistanceAttackCounter, comp2DistanceAttackCounter;
+
     //Singleton
     public static PlayerController sharedInstance;
 
@@ -164,6 +168,22 @@ public class PlayerController : MonoBehaviour
                         Dash(airDashLenght);
                         canAirDash2 = false;
                     }
+                }
+
+                //Para los ataques a distancia de los aliados
+                comp1DistanceAttackCounter -= Time.deltaTime;
+                comp2DistanceAttackCounter -= Time.deltaTime;
+                if (comp1DistanceAttackCounter <= 0)
+                    comp1DistanceAttack = true;
+                else comp1DistanceAttack = false;
+                if (comp2DistanceAttackCounter <= 0)
+                    comp2DistanceAttack = true;
+                else comp2DistanceAttack = false;
+                if (companion1.GetComponent<CompanionController>().distanceAttack && Input.GetButtonDown("Fire2"))
+                {
+                    comp1DistanceAttackCounter = 2f; 
+                    companion1.GetComponent<CompanionController>().anim.SetTrigger("DistanceAttack");
+                    //Instantiate()
                 }
 
             

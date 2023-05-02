@@ -86,6 +86,9 @@ public class CompanionController : MonoBehaviour
             theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);          
         }
 
+
+
+        //ANIMACIONES
         //Para comprobar si los ataques se realizan o no
         if (anim.GetBool("ComboAttack") == true)
             MoveToAttack();
