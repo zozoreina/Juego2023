@@ -56,6 +56,10 @@ public class PlayerController : MonoBehaviour
     bool comp1DistanceAttack, comp2DistanceAttack;
     float comp1DistanceAttackCounter, comp2DistanceAttackCounter;
     public GameObject Comp1Bullet, Comp2Bullet;
+
+    //Variable para saber si el enemigo puede atacar en el aire
+    bool comp1AirAttack, comp2AirAttack;
+    float comp1AirAttackCounter, comp2AirAttackCounter;
     
 
     //Singleton
@@ -98,6 +102,17 @@ public class PlayerController : MonoBehaviour
             //Para saber si estamos tocando el suelo
             isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
 
+            //Para los ataques aereos de los aliados
+            comp1AirAttackCounter -= Time.deltaTime;
+            comp2AirAttackCounter -= Time.deltaTime;
+
+            if (comp1AirAttackCounter <= 0)
+                comp1AirAttack = true;
+            else comp1AirAttack = false;
+            if (comp2AirAttackCounter <= 0)
+                comp2AirAttack = true;
+            else comp2AirAttack = false;
+
             //Para los ataques a distancia de los aliados
             comp1DistanceAttackCounter -= Time.deltaTime;
             comp2DistanceAttackCounter -= Time.deltaTime;
@@ -112,15 +127,19 @@ public class PlayerController : MonoBehaviour
 
             if (companion1.GetComponent<CompanionController>().distanceAttack && Input.GetButtonDown("Fire2") && comp1DistanceAttack)
             {
-                comp1DistanceAttackCounter = 15f;
+                comp1DistanceAttackCounter = 5f;
                 companion1.GetComponent<CompanionController>().anim.SetTrigger("DistanceAttack");
-                Instantiate(Comp1Bullet, companion1.GetComponent<CompanionController>().BulletPoint1);
+                var Bullet = Instantiate(Comp1Bullet, companion1.GetComponent<CompanionController>().BulletPoint1.position, companion1.GetComponent<CompanionController>().BulletPoint1.rotation);
+                Bullet.transform.localScale = transform.localScale;
+                Debug.Log("Ataque a distancia 1");
             }
             if (companion2.GetComponent<CompanionController>().distanceAttack && Input.GetButtonDown("Fire2") && comp2DistanceAttack)
             {
                 comp2DistanceAttackCounter = 2f;
                 companion2.GetComponent<CompanionController>().anim.SetTrigger("DistanceAttack");
-                Instantiate(Comp2Bullet, companion2.GetComponent<CompanionController>().BulletPoint2);
+                var Bullet = Instantiate(Comp2Bullet, companion2.GetComponent<CompanionController>().BulletPoint2.position, companion2.GetComponent<CompanionController>().BulletPoint2.rotation);
+                Bullet.transform.localScale = transform.localScale;
+                Debug.Log("Ataque a distancia 2");
             }
 
             if (!isDashing)
@@ -186,13 +205,23 @@ public class PlayerController : MonoBehaviour
                     //Dash
                     if (Input.GetKeyDown(KeyCode.LeftShift) && companion1.GetComponent<CompanionController>().airDash && !isGrounded && canAirDash1)
                     {
+                        companion1.GetComponent<CompanionController>().anim.SetBool("AirDash", true);
                         Dash(airDashLenght);
                         canAirDash1 = false;
                     }
                     else if(Input.GetKeyDown(KeyCode.LeftShift) && companion2.GetComponent<CompanionController>().airDash && !isGrounded && canAirDash2)
                     {
+                        companion2.GetComponent<CompanionController>().anim.SetBool("AirDash", true);
                         Dash(airDashLenght);
                         canAirDash2 = false;
+                    }
+
+                    //Ataque en el aire
+                    if (companion1.GetComponent<CompanionController>().airAttack && comp1AirAttack && Input.GetButtonDown("Fire1"))
+                    {
+                        comp1AirAttackCounter = 2f;
+                        companion1.GetComponent<CompanionController>().anim.SetBool("AirAttack", true);
+                        Debug.Log("AirAttack1");
                     }
                 }
 

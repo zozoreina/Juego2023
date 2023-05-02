@@ -227,6 +227,7 @@ MonoBehaviour:
   objetivePos:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   helperMoveSpeed: 20
   normalMoveSpeed: 10
   whatIsGround:
