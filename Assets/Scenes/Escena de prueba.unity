@@ -1206,13 +1206,33 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 399244137, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 534776205, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497826516981660491, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497826516981660491, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
+      propertyPath: chaseSpeed
+      value: 10.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497826516981660491, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1497826516981660493, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1497826516981660493, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 12.85
       objectReference: {fileID: 0}
     - target: {fileID: 1497826516981660493, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1248,6 +1268,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1497826516981660493, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497826516981660494, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}
+      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1497826516981660529, guid: 7395c4c06a081724ebce952f9e79a22c, type: 3}

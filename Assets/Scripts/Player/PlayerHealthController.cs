@@ -38,18 +38,24 @@ public class PlayerHealthController : MonoBehaviour
     void Update()
     {
         //Comprobamos si el contador de invencibilidad está vacio
-        if(invinvibleCounter > 0)
+        if (invinvibleCounter > 0)
         {
             //Le restamos 1 cada segundo
             invinvibleCounter -= Time.deltaTime;
 
+            //Hacemos que el player pueda atravesar al enemigo
+            Physics2D.IgnoreLayerCollision(7, 9, true);
+
             //Cuando el contador sea 0 
-            if(invinvibleCounter <= 0)
+            if (invinvibleCounter <= 0)
             {
                 //Cambiamos la transparencia del jugador
                 theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, 1f);
             }
         }
+        else
+            //Hacemos que el player pueda chocar nuevamente con el enemigo
+            Physics2D.IgnoreLayerCollision(7, 9, false);
     }
 
     //Método para dañar al jugador
