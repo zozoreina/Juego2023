@@ -21,8 +21,6 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckPoint;
     //Variable para detectar el Layer de suelo
     public LayerMask whatIsGround;
-    //Variable para saber si puede dar doble salto
-    bool doubleJump;
     //Fuerza de salto
     public float jumpForce;
 
@@ -52,15 +50,18 @@ public class PlayerController : MonoBehaviour
     //Referencia a los compañeros
     public GameObject companion1, companion2;
 
-    //Variable para saber si el enemigo ha hecho su ataque a distancia o no
+    //Variable para saber si el compañero ha hecho su ataque a distancia o no
     bool comp1DistanceAttack, comp2DistanceAttack;
     float comp1DistanceAttackCounter, comp2DistanceAttackCounter;
     public GameObject Comp1Bullet, Comp2Bullet;
 
-    //Variable para saber si el enemigo puede atacar en el aire
+    //Variable para saber si el compañero puede atacar en el aire
     bool comp1AirAttack, comp2AirAttack;
     float comp1AirAttackCounter, comp2AirAttackCounter;
-    
+
+    //Variables para saber si el compañero te puede ayudar a hacer doble salto
+    //Variable para saber si puede dar doble salto
+    bool doubleJump1, doubleJump2;
 
     //Singleton
     public static PlayerController sharedInstance;
@@ -175,7 +176,8 @@ public class PlayerController : MonoBehaviour
                 if (isGrounded)
                 {
                     //Saltar
-                    doubleJump = true;
+                    doubleJump1 = true;
+                    doubleJump2 = true;
                     if (Input.GetButtonDown("Jump"))
                     {
                         //El salto en sí
@@ -194,12 +196,21 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     //Saltar
-                    if (doubleJump && Input.GetButtonDown("Jump"))
+                    if (doubleJump1 && companion1.GetComponent<CompanionController>().doubleJump && Input.GetButtonDown("Jump"))
                     {
+                        companion1.GetComponent<CompanionController>().anim.SetBool("DoubleJump", true);
                         //El jugador salta
                         theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
                         //Y no puede volver a hacerlo
-                        doubleJump = false;
+                        doubleJump1 = false;
+                    }
+                    else if (doubleJump2 && companion2.GetComponent<CompanionController>().doubleJump && Input.GetButtonDown("Jump"))
+                    {
+                        companion2.GetComponent<CompanionController>().anim.SetBool("DoubleJump", true);
+                        //El jugador salta
+                        theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+                        //Y no puede volver a hacerlo
+                        doubleJump2 = false;
                     }
 
                     //AirDash

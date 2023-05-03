@@ -30,7 +30,7 @@ public class CompanionController : MonoBehaviour
     public Transform groundPoint;
 
     //Booleanas para compenetrar con player
-    public bool airDash, chargedAttack, attackCombo, airAttack, distanceAttack;
+    public bool airDash, doubleJump, attackCombo, airAttack, distanceAttack;
     //Array para guardar que booleanas están activas
     string[] activeAbilities = new string[3];
     //Variable para saber si el compañero ha atacado o no
@@ -95,6 +95,10 @@ public class CompanionController : MonoBehaviour
             MoveAfterAttack();
         if (anim.GetBool("AirAttack") == true)
             MoveToAirAttack();
+        if (anim.GetBool("AirDash") == true)
+            MoveToAirDash();
+        if (anim.GetBool("DoubleJump") == true)
+            MoveToDoubleJump();
     }
 
     //Método por el que el compañero se mueve a la zona de ataque
@@ -142,6 +146,21 @@ public class CompanionController : MonoBehaviour
         currentPos = 0;
     }
 
+    //Métodos por los que el compañero se moverá para hacer DoubleJump
+    public void MoveToDoubleJump()
+    {
+        theRB.gravityScale = 0f;
+        moveSpeed = helperMoveSpeed;
+        currentPos = 3;
+    }
+    public void MoveAfterDoubleJump()
+    {
+        anim.SetBool("DoubleJump", false);
+        theRB.gravityScale = 1f;
+        moveSpeed = normalMoveSpeed;
+        currentPos = 0; 
+    }
+
     //Método para el botón Air Dash
     public void AirDashButton()
     {
@@ -158,17 +177,17 @@ public class CompanionController : MonoBehaviour
     }
 
     //Método para le botón Charged Attack
-    public void ChargedAttackButton()
+    public void DoubleJumpButton()
     {
-        if(chargedAttack)
-        { 
-            chargedAttack = false;
-            DeactivateAbilities("chargedAttack");
+        if(doubleJump)
+        {
+            doubleJump = false;
+            DeactivateAbilities("doubleJump");
         }
         else
         {
-            chargedAttack = true;
-            ActivateAbility("chargedAttack");
+            doubleJump = true;
+            ActivateAbility("doubleJump");
         }
     }
 
@@ -231,8 +250,8 @@ public class CompanionController : MonoBehaviour
                     case "airDash":
                         airDash = false;
                         break;
-                    case "chargedAttack":
-                        chargedAttack = false;
+                    case "doubleJump":
+                        doubleJump = false;
                         break;
                     case "attackCombo":
                         attackCombo = false;
@@ -266,8 +285,8 @@ public class CompanionController : MonoBehaviour
                             case "airDash":
                                 airDash = false;
                                 break;
-                            case "chargedAttack":
-                                chargedAttack = false;
+                            case "doubleJump":
+                                doubleJump = false;
                                 break;
                             case "attackCombo":
                                 attackCombo = false;
@@ -290,8 +309,8 @@ public class CompanionController : MonoBehaviour
                             case "airDash":
                                 airDash = false;
                                 break;
-                            case "chargedAttack":
-                                chargedAttack = false;
+                            case "doubleJump":
+                                doubleJump = false;
                                 break;
                             case "attackCombo":
                                 attackCombo = false;
@@ -313,8 +332,8 @@ public class CompanionController : MonoBehaviour
                             case "airDash":
                                 airDash = false;
                                 break;
-                            case "chargedAttack":
-                                chargedAttack = false;
+                            case "doubleJump":
+                                doubleJump = false;
                                 break;
                             case "attackCombo":
                                 attackCombo = false;
@@ -349,7 +368,7 @@ public class CompanionController : MonoBehaviour
                         {
                             case "airDash":
                                 return true;
-                            case "chargedAttack":
+                            case "doubleJump":
                                 return true;
                             case "attackCombo":
                                 return true;
@@ -364,7 +383,7 @@ public class CompanionController : MonoBehaviour
                         {
                             case "airDash":
                                 return true;
-                            case "chargedAttack":
+                            case "doubleJump":
                                 return true;
                             case "attackCombo":
                                 return true;
@@ -379,7 +398,7 @@ public class CompanionController : MonoBehaviour
                         {
                             case "airDash":
                                 return true;
-                            case "chargedAttack":
+                            case "doubleJump":
                                 return true;
                             case "attackCombo":
                                 return true;
