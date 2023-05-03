@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
                         doubleJump = false;
                     }
 
-                    //Dash
+                    //AirDash
                     if (Input.GetKeyDown(KeyCode.LeftShift) && companion1.GetComponent<CompanionController>().airDash && !isGrounded && canAirDash1)
                     {
                         companion1.GetComponent<CompanionController>().anim.SetBool("AirDash", true);
@@ -221,6 +221,12 @@ public class PlayerController : MonoBehaviour
                     {
                         comp1AirAttackCounter = 2f;
                         companion1.GetComponent<CompanionController>().anim.SetBool("AirAttack", true);
+                        Debug.Log("AirAttack1");
+                    }
+                    if (companion2.GetComponent<CompanionController>().airAttack && comp2AirAttack && Input.GetButtonDown("Fire1"))
+                    {
+                        comp2AirAttackCounter = 2f;
+                        companion2.GetComponent<CompanionController>().anim.SetBool("AirAttack", true);
                         Debug.Log("AirAttack1");
                     }
                 }

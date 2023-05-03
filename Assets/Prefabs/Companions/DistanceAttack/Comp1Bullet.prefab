@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8157049445714278746}
   - component: {fileID: 8157049445714278747}
   - component: {fileID: 1668144743}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Comp1Bullet
   m_TagString: CompBullet
   m_Icon: {fileID: 0}

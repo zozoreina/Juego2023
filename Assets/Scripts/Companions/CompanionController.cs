@@ -39,9 +39,6 @@ public class CompanionController : MonoBehaviour
     //Posición de las que salen las balas
     public Transform BulletPoint1, BulletPoint2;
 
-    //Variables por las que sabremos si el compañero a atacado en el aire
-    bool hasAirAttack;
-
     //Singleton
     public static CompanionController sharedInstance;
 
@@ -121,14 +118,28 @@ public class CompanionController : MonoBehaviour
         theRB.gravityScale = 0;
         moveSpeed = helperMoveSpeed;
         currentPos = 2;
-        hasAirAttack = true;
     }
     public void MoveAfterAirAttack()
     {
+        anim.SetBool("AirAttack", false);
         theRB.gravityScale = 1;
         moveSpeed = normalMoveSpeed;
         currentPos = 0;
-        hasAirAttack = false;
+    }
+
+    //Métodos por los que el compañero se moverá a hacer el AirDash
+    public void MoveToAirDash()
+    {
+        theRB.gravityScale = 0f;
+        moveSpeed = helperMoveSpeed;
+        currentPos = 3;
+    }
+    public void MoveAfterAirDash()
+    {
+        anim.SetBool("AirDash", false);
+        theRB.gravityScale = 1f;
+        moveSpeed = normalMoveSpeed;
+        currentPos = 0;
     }
 
     //Método para el botón Air Dash
