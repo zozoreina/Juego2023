@@ -598,6 +598,10 @@ PrefabInstance:
       propertyPath: objetivePos.Array.data[2]
       value: 
       objectReference: {fileID: 475770770}
+    - target: {fileID: 6964037984188290909, guid: be6e2f43bcccfd945aace4c88ac824eb, type: 3}
+      propertyPath: objetivePos.Array.data[3]
+      value: 
+      objectReference: {fileID: 971671011}
     - target: {fileID: 6964037984188290910, guid: be6e2f43bcccfd945aace4c88ac824eb, type: 3}
       propertyPath: m_Name
       value: Companion2
@@ -746,6 +750,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &724214138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 724214138, guid: 9ef31cf28c045754bb80866add0720f4, type: 3}
+  m_PrefabInstance: {fileID: 6113906262177937523}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &763933731
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +929,11 @@ Transform:
 --- !u!4 &857940763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4672217842309388569, guid: 9ef31cf28c045754bb80866add0720f4, type: 3}
+  m_PrefabInstance: {fileID: 6113906262177937523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &971671011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 971671011, guid: 9ef31cf28c045754bb80866add0720f4, type: 3}
   m_PrefabInstance: {fileID: 6113906262177937523}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &990884503
@@ -1311,6 +1325,10 @@ PrefabInstance:
       propertyPath: objetivePos.Array.data[2]
       value: 
       objectReference: {fileID: 839013369}
+    - target: {fileID: 3621046397262343703, guid: 90214351716bbcf498c5b0697d08bdbc, type: 3}
+      propertyPath: objetivePos.Array.data[3]
+      value: 
+      objectReference: {fileID: 724214138}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 90214351716bbcf498c5b0697d08bdbc, type: 3}
@@ -1405,34 +1423,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 478780984}
-    - target: {fileID: 80964218, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DistanceAttackButton
-      objectReference: {fileID: 0}
     - target: {fileID: 86114177, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 478780984}
-    - target: {fileID: 86114177, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChargedAttackButton
-      objectReference: {fileID: 0}
     - target: {fileID: 274142185, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3621046396567943229}
-    - target: {fileID: 427979387, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 608473654, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 478780984}
-    - target: {fileID: 608473654, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AttackComboButton
-      objectReference: {fileID: 0}
     - target: {fileID: 780828927, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1453,18 +1455,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 478780984}
-    - target: {fileID: 1554710308, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AirAttackButton
-      objectReference: {fileID: 0}
     - target: {fileID: 1664447597, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 478780984}
-    - target: {fileID: 1664447597, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AirDashButton
-      objectReference: {fileID: 0}
     - target: {fileID: 5303336424558691939, guid: e6bfe3264e0d2eb478e33d63fab37de4, type: 3}
       propertyPath: m_Pivot.x
       value: 0

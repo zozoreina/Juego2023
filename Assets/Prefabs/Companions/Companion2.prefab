@@ -228,6 +228,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   helperMoveSpeed: 20
   normalMoveSpeed: 10
   whatIsGround:
@@ -235,7 +236,7 @@ MonoBehaviour:
     m_Bits: 64
   groundPoint: {fileID: 6964037982970218740}
   airDash: 0
-  chargedAttack: 0
+  doubleJump: 0
   attackCombo: 0
   airAttack: 0
   distanceAttack: 0

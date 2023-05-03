@@ -32,7 +32,7 @@ public class CompanionController : MonoBehaviour
     //Booleanas para compenetrar con player
     public bool airDash, doubleJump, attackCombo, airAttack, distanceAttack;
     //Array para guardar que booleanas están activas
-    string[] activeAbilities = new string[3];
+    public string[] activeAbilities = new string[3];
     //Variable para saber si el compañero ha atacado o no
     bool hasAttacked;
 
@@ -71,6 +71,7 @@ public class CompanionController : MonoBehaviour
         else if (theRB.position.x > objetivePos[currentPos].position.x)
             isLeft = true;
 
+       
         //El compañero se mueve hacia el objetivo
         if (Mathf.Abs(theRB.position.x - objetivePos[currentPos].position.x) > .1f)
         {
@@ -84,8 +85,9 @@ public class CompanionController : MonoBehaviour
 
         if (theRB.position.y < objetivePos[currentPos].position.y -.1f && isGrounded) 
         {
-            theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);          
+            theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);
         }
+        
 
 
         //Para comprobar si los ataques se realizan o no
