@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
 
             //Para saber si estamos tocando el suelo
-            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .5f, whatIsGround);
+            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
             //Para los ataques aereos de los aliados
             comp1AirAttackCounter -= Time.deltaTime;
@@ -162,11 +162,13 @@ public class PlayerController : MonoBehaviour
                         theSR.flipX = false;
                         //El jugador mira a la izquierda 
                         isLeft = true;
+                        transform.localScale = new Vector3(-1f, 1.5f, 1f);
                     }
                     else if (theRB.velocity.x > 0)
                     {
                         theSR.flipX = true;
                         isLeft = false;
+                        transform.localScale = new Vector3(1f, 1.5f, 1f);
                     }
 
                     //Para habilitar la capacidad de atacar del jugador

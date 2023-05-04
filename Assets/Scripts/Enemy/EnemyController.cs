@@ -6,6 +6,10 @@ public class EnemyController : MonoBehaviour
 {
     //Fuerza de knockback
     public float knockBackForce;
+    //Contador de knockback
+    float knockBackCounter;
+    //Duración del knockback
+    public float knockBackLength;
 
     //Referencia al RB
     private Rigidbody2D theRB;
@@ -57,50 +61,54 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Si el contador de ataque está lleno hacemos que se vacíe el contador
-        if (tBACounter > 0)
-            tBACounter -= Time.deltaTime;
-        //Si el contador de ataque ya está vacío
-        else
+        if (knockBackCounter <= 0)
         {
-            //Si el enemigo no ha visto al jugador aún
-            if (Vector3.Distance(transform.position, PlayerController.sharedInstance.transform.position) > distanceToAttack && target == Vector3.zero)
-            {
-                //Movemos al enemigo
-                transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentPoint].position, moveSpeed * Time.deltaTime);
-                //Cuando el enemigo llegue a su destino
-                if (Vector3.Distance(transform.position, patrolPoints[currentPoint].position) < .1f)
-                {
-                    currentPoint++;
-                    if (currentPoint >= patrolPoints.Length)
-                        currentPoint = 0;
-                }
-
-                //Si el enemigo llega al punto más a la izquierda lo rotamos para que cambie de dirección
-                //Esto es del SpriteRenderer ya lo haré
-            }
-            //Si el jugador puede ser atacado
+            knockBackCounter -= Time.deltaTime;
+            //Si el contador de ataque está lleno hacemos que se vacíe el contador
+            if (tBACounter > 0)
+                tBACounter -= Time.deltaTime;
+            //Si el contador de ataque ya está vacío
             else
             {
-                //Si el objetivo de ataque está vacío metemos al jugador
-                if (target == Vector3.zero || target != Vector3.zero)
-                    target = PlayerController.sharedInstance.transform.position;
-
-                if (Vector3.Distance(transform.position, target) < distanceToAttack)
+                //Si el enemigo no ha visto al jugador aún
+                if (Vector3.Distance(transform.position, PlayerController.sharedInstance.transform.position) > distanceToAttack && target == Vector3.zero)
                 {
-                    //El enemigo se lanza a por el jugador
-                    transform.position = Vector3.MoveTowards(transform.position, target, attackSpeed * Time.deltaTime);
+                    //Movemos al enemigo
+                    transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentPoint].position, moveSpeed * Time.deltaTime);
+                    //Cuando el enemigo llegue a su destino
+                    if (Vector3.Distance(transform.position, patrolPoints[currentPoint].position) < .1f)
+                    {
+                        currentPoint++;
+                        if (currentPoint >= patrolPoints.Length)
+                            currentPoint = 0;
+                    }
+
+                    //Si el enemigo llega al punto más a la izquierda lo rotamos para que cambie de dirección
+                    //Esto es del SpriteRenderer ya lo haré
                 }
+                //Si el jugador puede ser atacado
                 else
-                    //El enemigo persigue al jugador
-                    transform.position = Vector3.MoveTowards(transform.position, target, chaseSpeed * Time.deltaTime);
-                //Si el enemigo ha llegado al target 
-                if (Vector3.Distance(transform.position, target) < .1f)
-                    tBACounter = timeBetweenAttacks;
+                {
+                    //Si el objetivo de ataque está vacío metemos al jugador
+                    if (target == Vector3.zero || target != Vector3.zero)
+                        target = PlayerController.sharedInstance.transform.position;
+
+                    if (Vector3.Distance(transform.position, target) < distanceToAttack)
+                    {
+                        //El enemigo se lanza a por el jugador
+                        transform.position = Vector3.MoveTowards(transform.position, target, attackSpeed * Time.deltaTime);
+                    }
+                    else
+                        //El enemigo persigue al jugador
+                        transform.position = Vector3.MoveTowards(transform.position, target, chaseSpeed * Time.deltaTime);
+                    //Si el enemigo ha llegado al target 
+                    if (Vector3.Distance(transform.position, target) < .1f)
+                        tBACounter = timeBetweenAttacks;
+                }
+
+
+
             }
-
-
-
         }
     }
 
@@ -124,6 +132,7 @@ public class EnemyController : MonoBehaviour
         {
             theRB.velocity = new Vector2(knockBackForce, theRB.velocity.y);
         }
+        knockBackCounter = knockBackLength;
     }
 
     

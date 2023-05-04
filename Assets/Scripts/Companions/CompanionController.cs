@@ -87,8 +87,10 @@ public class CompanionController : MonoBehaviour
         {
             theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);
         }
-        
 
+        //Para respawnear al compañero si se queda muy lejos del jugador
+        //if (Vector3.Distance(transform.position, objetivePos[currentPos].transform.position) > 15)
+          //  LevelManager.sharedInstance.respawnCompanion(gameObject);
 
         //Para comprobar si los ataques se realizan o no
         if (anim.GetBool("ComboAttack") == true)
