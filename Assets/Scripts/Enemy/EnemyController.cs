@@ -104,6 +104,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //Método para hacer daño al jugador
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerHealthController.sharedInstance.DealWithDamage(34);
+        }
+    }
+
     //Método para knockback enemigo
     public void EnemyKnockback()
     {

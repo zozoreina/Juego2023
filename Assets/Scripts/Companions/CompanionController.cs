@@ -415,5 +415,13 @@ public class CompanionController : MonoBehaviour
         }
         return false;
     }
-    
+
+    public void OpenOrCloseAttackWindow()
+    {
+        if (anim.GetBool("AttackWindow") == false)
+            anim.SetBool("AttackWindow", true);
+        else
+            anim.SetBool("AttackWindow", false);
+    }
+
 }

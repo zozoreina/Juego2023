@@ -28,24 +28,26 @@ public class PlayerController : MonoBehaviour
     //Detectamos hacia donde mira el juador
     public bool isLeft;
 
-    //Referencia al animador
-    private Animator anim;
-    //Referencia al SR del jugador
-    SpriteRenderer theSR;
-
-
     //Variables para el contador de tiempo del KnockBack
     public float knockBackLength, knockBackForce; //Valor que tendrá el contador de KnockBack
     private float knockBackCounter; //Contador de KnockBack
     public bool isHurt;
 
+    //Variable para saber si el jugador se puede mover o no
+    public bool canPlay;
+
+    //Variable para saber si el jugador puede hacer daño
+    public bool canDmg;
+
+    //Referencia al animador
+    private Animator anim;
+    //Referencia al SR del jugador
+    SpriteRenderer theSR;
+
     //Referencia al Menu de pausa
     public PauseMenu pauseMenu;
     //Referencia al Comanion Menu
-    public CompanionsMenu companionMenu;
-
-    //Variable para saber si el jugador se puede mover o no
-    public bool canPlay;
+    public CompanionsMenu companionMenu;   
 
     //Referencia a los compañeros
     public GameObject companion1, companion2;
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
     //Variable para saber si el compañero puede atacar en el aire
     bool comp1AirAttack, comp2AirAttack;
     float comp1AirAttackCounter, comp2AirAttackCounter;
-
+    
     //Variables para saber si el compañero te puede ayudar a hacer doble salto
     //Variable para saber si puede dar doble salto
     bool doubleJump1, doubleJump2;
@@ -167,7 +169,13 @@ public class PlayerController : MonoBehaviour
                         isLeft = false;
                     }
 
-                    
+                    //Para habilitar la capacidad de atacar del jugador
+                    if (anim.GetBool("AttackWindow"))
+                    {
+                        canDmg = true; Debug.Log("Preparado para hacer daño");
+                    }
+                    else canDmg = false;
+
                 }
 
             
@@ -320,14 +328,12 @@ public class PlayerController : MonoBehaviour
 
 
     //Métodos para activar y desactivar las ventanas de ataque del arma
-    public void OpenOrCloseAttackWindow()
+    public void TurnOnAttackWindow()
     {
-        if (anim.GetBool("AttackWindow") == false)
-            anim.SetBool("AttackWindow", true);
-        else
-            anim.SetBool("AttackWindow", false);
+        anim.SetBool("AttackWindow", true);
     }
-    
-
-
+    public void TurnOffAttackWindow()
+    {
+        anim.SetBool("AttackWindow", false);
+    }
 }

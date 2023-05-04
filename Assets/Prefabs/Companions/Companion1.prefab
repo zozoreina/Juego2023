@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512213293}
   - component: {fileID: 512213294}
+  - component: {fileID: 2046754021917027519}
   m_Layer: 8
   m_Name: CompanionAttackHitBox
   m_TagString: Untagged
@@ -58,6 +59,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2046754021917027519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512213292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9b4ed7436b081479755d65ef05d28b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &960701908058969889
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +243,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   helperMoveSpeed: 20
-  normalMoveSpeed: 10
+  normalMoveSpeed: 7.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -240,6 +253,10 @@ MonoBehaviour:
   attackCombo: 0
   airAttack: 0
   distanceAttack: 0
+  activeAbilities:
+  - 
+  - 
+  - 
   BulletPoint1: {fileID: 6215671946251836944}
   BulletPoint2: {fileID: 0}
 --- !u!61 &3621046397262343697
@@ -283,7 +300,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 6200000, guid: 7caff274db13afb4eadc546f215b575b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1

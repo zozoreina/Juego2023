@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &129689049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 129689050}
+  m_Layer: 0
+  m_Name: CamPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &129689050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129689049}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.6666667, z: 0}
+  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6113906261988711484}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475770769
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,9 +324,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6536251430819588592}
   - component: {fileID: 7633987321213937146}
+  - component: {fileID: 1153927721}
   m_Layer: 7
   m_Name: MeleeHitbox
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,6 +373,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1153927721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868049357561952701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ab97cea42dbd24097f0c6096058b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6113906261988711486
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +424,7 @@ Transform:
   - {fileID: 6536251430819588592}
   - {fileID: 4863950938913840390}
   - {fileID: 2061227800595944734}
+  - {fileID: 129689050}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -450,7 +495,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -484,8 +529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd012640dc26ed4580836f288cfcc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  dashForce: 13
+  moveSpeed: 8
+  dashForce: 10
   groundDashLength: 1
   airDashLenght: 0.5
   dashWaitTime: 1
@@ -494,14 +539,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 20
+  jumpForce: 20.5
   isLeft: 0
   knockBackLength: 1
   knockBackForce: 5
   isHurt: 0
+  canPlay: 0
+  canDmg: 0
   pauseMenu: {fileID: 0}
   companionMenu: {fileID: 0}
-  canPlay: 0
   companion1: {fileID: 0}
   companion2: {fileID: 0}
   Comp1Bullet: {fileID: 8157049445714278054, guid: 241741753570f64418b35dcf0a8849c1, type: 3}

@@ -99,6 +99,7 @@ public class IdleCombat : MeleBaseState
     public override void OnStart()
     {
         shouldCombo = false;
+        duration = .3f;
         Debug.Log("EnterIdle");
         base.OnStart();
     }
@@ -109,11 +110,13 @@ public class IdleCombat : MeleBaseState
         time += Time.deltaTime;
         if (Input.GetButtonDown("Fire1") && PlayerController.sharedInstance.isGrounded && PlayerController.sharedInstance.canPlay)
             shouldCombo = true;
-        if (shouldCombo)
+        if (time >= duration)
         {
-            
-            nextState = new Ground1(player, anim);
-            stage = EVENT.Exit;
+            if (shouldCombo)
+            {
+                nextState = new Ground1(player, anim);
+                stage = EVENT.Exit;
+            }
         }
      }
 
@@ -152,9 +155,11 @@ public class Ground1 : MeleBaseState
         //Resolución del ataque
         if (time >= duration)
         {
+            Debug.Log(time);
             
             if (shouldCombo)
             {
+                Debug.Log("shouldCombo pasa");
                 nextState = new Ground2(player, anim);
                 stage = EVENT.Exit;
             }
