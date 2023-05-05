@@ -20,4 +20,10 @@ public class AttackStateMachine : MonoBehaviour
         currentState = currentState.Process();
     }
 
+
+    public void SetCurrentStateToMain()
+    {
+        currentState = new IdleCombat(gameObject, anim);
+    }
+
 }

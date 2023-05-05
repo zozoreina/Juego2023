@@ -130,7 +130,7 @@ public class CompanionController : MonoBehaviour
     public void MoveAfterAirAttack()
     {
         anim.SetBool("AirAttack", false);
-        theRB.gravityScale = 1;
+        theRB.gravityScale = 1.5f;
         moveSpeed = normalMoveSpeed;
         currentPos = 0;
     }
@@ -145,7 +145,7 @@ public class CompanionController : MonoBehaviour
     public void MoveAfterAirDash()
     {
         anim.SetBool("AirDash", false);
-        theRB.gravityScale = 1f;
+        theRB.gravityScale = 1.5f;
         moveSpeed = normalMoveSpeed;
         currentPos = 0;
     }
@@ -160,7 +160,7 @@ public class CompanionController : MonoBehaviour
     public void MoveAfterDoubleJump()
     {
         anim.SetBool("DoubleJump", false);
-        theRB.gravityScale = 1f;
+        theRB.gravityScale = 1.5f;
         moveSpeed = normalMoveSpeed;
         currentPos = 0; 
     }

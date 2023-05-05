@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    //Singleton
-    public static LevelManager sharedInstance;
 
     //Cantidad de tiempo a esperar que el jugador respawnee
     public float waitToRespawn;
 
+
+
+    //Singleton
+    public static LevelManager sharedInstance;
     private void Awake()
     {
         if (sharedInstance == null)
         {
             sharedInstance = this;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     //Para respawear al jugador
@@ -65,17 +55,17 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator respawnCompanionCo(GameObject Companion)
     {
-        Companion.gameObject.SetActive(false);
+        //Companion.gameObject.SetActive(false);
         yield return new WaitForSeconds(waitToRespawn);
-        Companion.gameObject.SetActive(true);
+        //Companion.gameObject.SetActive(true);
         Companion.transform.position = Companion.GetComponent<CompanionController>().objetivePos[0].transform.position;
     }
 
     IEnumerator respawnEnemyCo(GameObject Enemy)
     {
-        Enemy.gameObject.SetActive(false);
+        //Enemy.gameObject.SetActive(false);
         yield return new WaitForSeconds(waitToRespawn);
-        Enemy.gameObject.SetActive(true);
+        //Enemy.gameObject.SetActive(true);
         Enemy.transform.position = Enemy.GetComponent<EnemyController>().spawnPoint;
     }
 }

@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour
 
     //Variable donde guardar la distancia máxima para atacar al player y velocidad del ataque y velocidad de persecución
     public float distanceToAttack, attackSpeed, chaseSpeed;
+    //Variable para saber si está atacando
+    bool isAttacking;
 
     //Objetivo a atacar 
     Vector3 target;
@@ -61,9 +63,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        knockBackCounter -= Time.deltaTime;
         if (knockBackCounter <= 0)
         {
-            knockBackCounter -= Time.deltaTime;
+            
             //Si el contador de ataque está lleno hacemos que se vacíe el contador
             if (tBACounter > 0)
                 tBACounter -= Time.deltaTime;
@@ -87,7 +90,7 @@ public class EnemyController : MonoBehaviour
                     //Esto es del SpriteRenderer ya lo haré
                 }
                 //Si el jugador puede ser atacado
-                else
+                else if (!isAttacking)
                 {
                     //Si el objetivo de ataque está vacío metemos al jugador
                     if (target == Vector3.zero || target != Vector3.zero)
@@ -96,11 +99,17 @@ public class EnemyController : MonoBehaviour
                     if (Vector3.Distance(transform.position, target) < distanceToAttack)
                     {
                         //El enemigo se lanza a por el jugador
-                        transform.position = Vector3.MoveTowards(transform.position, target, attackSpeed * Time.deltaTime);
+                        //transform.position = Vector3.MoveTowards(transform.position, target, attackSpeed * Time.deltaTime);
+                        Attack();
+                        
                     }
                     else
+                    {
+                        Vector2 chaseDirection = new Vector2(PlayerController.sharedInstance.transform.position.x - transform.position.x, PlayerController.sharedInstance.transform.position.y - transform.position.y);
+                        chaseDirection.Normalize();
                         //El enemigo persigue al jugador
-                        transform.position = Vector3.MoveTowards(transform.position, target, chaseSpeed * Time.deltaTime);
+                        theRB.velocity = chaseDirection * chaseSpeed;
+                    }
                     //Si el enemigo ha llegado al target 
                     if (Vector3.Distance(transform.position, target) < .1f)
                         tBACounter = timeBetweenAttacks;
@@ -135,6 +144,22 @@ public class EnemyController : MonoBehaviour
         knockBackCounter = knockBackLength;
     }
 
-    
+    //Método por el que el enemigo ataca al jugador
+    public void Attack()
+    {
+        StartCoroutine(AttackCo());
+    }
+    //Corrutina de ataque
+    public IEnumerator AttackCo()
+    {
+        Vector2 attackDirection = new Vector2(PlayerController.sharedInstance.transform.position.x - transform.position.x, PlayerController.sharedInstance.transform.position.y - transform.position.y);
+        attackDirection.Normalize();
+        theRB.velocity = attackDirection * attackSpeed;
+        isAttacking = true;
+        yield return new WaitForSeconds(2f);
+        theRB.velocity = Vector2.zero;
+        isAttacking = false;
+    }
+
 
 }

@@ -323,7 +323,7 @@ public class PlayerController : MonoBehaviour
         }
         yield return new WaitForSeconds(length);
         isDashing = false;
-        theRB.gravityScale = 3f;
+        theRB.gravityScale = 5f;
         yield return new WaitForSeconds(dashWaitTime);
         canDash = true;
     }

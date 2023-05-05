@@ -322,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106bf9a040262d649ac3f7cce6c610bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameScene: Escena de prueba
-  continueGameScene: Escena de prueba
+  newGameScene: Level1_Scene
+  continueGameScene: Level1_Scene
   continueButton: {fileID: 1284116765}
 --- !u!1 &1284116765
 GameObject:
