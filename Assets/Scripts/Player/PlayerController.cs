@@ -65,9 +65,6 @@ public class PlayerController : MonoBehaviour
     //Variable para saber si puede dar doble salto
     bool doubleJump1, doubleJump2;
 
-    //Variable para saber si el jugador está ascendiendo de manera que necesita la cámara
-    public bool goingUp;
-
     //Singleton
     public static PlayerController sharedInstance;
 

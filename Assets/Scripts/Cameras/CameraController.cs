@@ -14,7 +14,11 @@ public class CameraController : MonoBehaviour
     //Varibales para posiciones máximas de cam
     public float minHeight;
 
-    
+    //Variable para saber si el jugador está ascendiendo de manera que necesita la cámara (principalmente para usar en ascensores)
+    bool goingUp;
+
+    //Referencia al objeto donde se guardan las zonas donde se puede mover la camara en Y
+    public GameObject yMovementZones;
 
     public static CameraController sharedInstance;
     private void Awake()
@@ -31,6 +35,7 @@ public class CameraController : MonoBehaviour
         //Soltamos a los hijos
         for (int i = 1; i < targets.Length; i++)
             targets[i].transform.parent = null;
+        yMovementZones.transform.parent = null;
 
     }
 
@@ -40,7 +45,7 @@ public class CameraController : MonoBehaviour
         if (target == 0)
         {
             //Hacemos que si la camara está persiguiendo al jugador, lo persiga en eje Y dependiendo de si está ascendiendo o se mantiene en el nivel
-            if (PlayerController.sharedInstance.goingUp)
+            if (goingUp)
                 //La cam sigue al jugador sin cambiar en z
                 transform.position = new Vector3(targets[target].position.x, Mathf.Clamp(targets[target].transform.position.y, minHeight, Mathf.Infinity), transform.position.z);
             else transform.position = new Vector3(targets[target].position.x, transform.position.y, transform.position.z);
@@ -61,5 +66,19 @@ public class CameraController : MonoBehaviour
     public void ChangeCurrentPos(int newpos)
     {
         target = newpos;
+    }
+    //Método para cambiar el zoom de la cámara
+    public void ChangeCurrentZoom(float newZoom)
+    {
+        GetComponent<Camera>().orthographicSize = newZoom;
+    }
+    //Método para cambiar si la cámara se bloquea en Y
+    public void AllowYMovement()
+    {
+        goingUp = true;
+    }
+    public void LimitYMovement()
+    {
+        goingUp = false;
     }
 }
