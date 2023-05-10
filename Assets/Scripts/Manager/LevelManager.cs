@@ -49,8 +49,13 @@ public class LevelManager : MonoBehaviour
         PlayerController.sharedInstance.gameObject.SetActive(true);
         //Le devolvemos algo de vida
         PlayerHealthController.sharedInstance.currentHealth = PlayerHealthController.sharedInstance.maxHealth;
+        //Respawneamos a los compañeros con junto con él
+        respawnCompanion(PlayerController.sharedInstance.companion1);
+        respawnCompanion(PlayerController.sharedInstance.companion2);
         //Lo movemos a la posición de respawn
         PlayerController.sharedInstance.transform.position = CheckpoitnController.sharedInstance.spawnPoint;
+        //Movemos la cámara a la posición del jugador
+        CameraController.sharedInstance.ChangeCurrentPos(1);
     }
 
     IEnumerator respawnCompanionCo(GameObject Companion)
