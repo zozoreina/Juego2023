@@ -89,8 +89,8 @@ public class CompanionController : MonoBehaviour
         }
 
         //Para respawnear al compañero si se queda muy lejos del jugador
-        //if (Vector3.Distance(transform.position, objetivePos[currentPos].transform.position) > 15)
-          //  LevelManager.sharedInstance.respawnCompanion(gameObject);
+        if (Vector3.Distance(transform.position, objetivePos[currentPos].transform.position) > 20)
+            LevelManager.sharedInstance.respawnCompanion(gameObject);
 
         //Para comprobar si los ataques se realizan o no
         if (anim.GetBool("ComboAttack") == true)

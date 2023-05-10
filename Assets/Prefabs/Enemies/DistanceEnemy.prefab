@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5468697497809232663}
   - component: {fileID: 5468697497809232657}
   - component: {fileID: 5468697497809232661}
+  - component: {fileID: 6749656831509110127}
   m_Layer: 9
   m_Name: DistanceEnemy
   m_TagString: Enemy
@@ -139,6 +140,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+--- !u!114 &6749656831509110127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5468697497809232686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 909f66ec68dbff34b85c60385d2dee05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6858399690044903891
 GameObject:
   m_ObjectHideFlags: 0

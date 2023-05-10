@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthController : MonoBehaviour
+public class DistanceEnemyHealthController : MonoBehaviour
 {
     //Vida
     public int maxHealth;
@@ -10,11 +10,11 @@ public class EnemyHealthController : MonoBehaviour
 
 
     //Singleton
-    public static EnemyHealthController sharedInstance;
+    public static DistanceEnemyHealthController sharedInstance;
 
     private void Awake()
     {
-        if(sharedInstance == null)
+        if (sharedInstance == null)
         {
             sharedInstance = this;
         }
@@ -28,14 +28,13 @@ public class EnemyHealthController : MonoBehaviour
     public void EnemyTakingDamage()
     {
         currentHealth--;
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
         }
         else
         {
-            EnemyController.sharedInstance.EnemyKnockback();
+            DistanceEnemyController.sharedInstance.EnemyKnockback();
         }
     }
-
 }
