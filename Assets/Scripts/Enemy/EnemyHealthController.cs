@@ -34,7 +34,7 @@ public class EnemyHealthController : MonoBehaviour
         }
         else
         {
-            EnemyController.sharedInstance.EnemyKnockback();
+            GetComponent<EnemyKnockBackController>().EnemyKnockback();
         }
     }
 

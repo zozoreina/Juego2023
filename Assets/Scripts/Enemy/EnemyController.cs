@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    //Fuerza de knockback
-    public float knockBackForce;
-    //Contador de knockback
-    float knockBackCounter;
-    //Duración del knockback
-    public float knockBackLength;
+    
 
     //Referencia al RB
     private Rigidbody2D theRB;
 
-    //Punto donde de aparación original del enemigo
-    public Vector3 spawnPoint;
+    
 
     //Puntos entre los que patrulla el enemigo
     public Transform[] patrolPoints;
@@ -52,8 +46,7 @@ public class EnemyController : MonoBehaviour
         //Inicializamos el RB
         theRB = GetComponent<Rigidbody2D>();
 
-        //Guardamos punto de aparición
-        spawnPoint = transform.position;
+        
 
         //Sacamos los puntos de patrulla del Enemigo
         foreach (Transform p in patrolPoints)
@@ -63,8 +56,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        knockBackCounter -= Time.deltaTime;
-        if (knockBackCounter <= 0)
+        
+        if (GetComponent<EnemyKnockBackController>().knockBackCounter <= 0)
         {
             
             //Si el contador de ataque está lleno hacemos que se vacíe el contador
@@ -130,19 +123,8 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    //Método para knockback enemigo
-    public void EnemyKnockback()
-    {
-        if(PlayerController.sharedInstance.isLeft)
-        {
-            theRB.velocity = new Vector2(-knockBackForce, theRB.velocity.y);
-        }
-        else
-        {
-            theRB.velocity = new Vector2(knockBackForce, theRB.velocity.y);
-        }
-        knockBackCounter = knockBackLength;
-    }
+    
+    
 
     //Método por el que el enemigo ataca al jugador
     public void Attack()

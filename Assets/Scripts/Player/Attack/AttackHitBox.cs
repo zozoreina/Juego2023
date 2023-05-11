@@ -10,7 +10,8 @@ public class AttackHitBox : MonoBehaviour
         {
             Debug.Log("Le pegamos al enemigo");
             PlayerController.sharedInstance.canDmg = false;
-            EnemyHealthController.sharedInstance.EnemyTakingDamage();
+            collision.gameObject.GetComponent<EnemyHealthController>().EnemyTakingDamage();
+            //EnemyHealthController.sharedInstance.EnemyTakingDamage();
         }
     }
 }

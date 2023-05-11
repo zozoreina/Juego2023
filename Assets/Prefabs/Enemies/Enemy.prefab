@@ -76,6 +76,8 @@ GameObject:
   - component: {fileID: 1497826516981660494}
   - component: {fileID: 1497826516981660490}
   - component: {fileID: 1497826516981660491}
+  - component: {fileID: 90606206}
+  - component: {fileID: 90606205}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -98,7 +100,7 @@ Transform:
   - {fileID: 534776205}
   - {fileID: 399244137}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1497826516981660492
 SpriteRenderer:
@@ -214,9 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d905be82f927f64da85175a9792629d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackForce: 10
-  knockBackLength: 5
-  spawnPoint: {x: 0, y: 0, z: 0}
   patrolPoints:
   - {fileID: 534776205}
   - {fileID: 399244137}
@@ -225,3 +224,31 @@ MonoBehaviour:
   attackSpeed: 15
   chaseSpeed: 8.2
   timeBetweenAttacks: 4
+--- !u!114 &90606206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497826516981660529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019b72ff3cb078a46a0c0189572f9052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackForce: 5
+  knockBackCounter: 0
+  knockBackLength: 1.5
+--- !u!114 &90606205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497826516981660529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228a7c46bf7bd8a4081605156d04c806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {x: 0, y: 0, z: 0}

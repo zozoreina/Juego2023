@@ -71,6 +71,6 @@ public class LevelManager : MonoBehaviour
         //Enemy.gameObject.SetActive(false);
         yield return new WaitForSeconds(waitToRespawn);
         //Enemy.gameObject.SetActive(true);
-        Enemy.transform.position = Enemy.GetComponent<EnemyController>().spawnPoint;
+        Enemy.transform.position = Enemy.GetComponent<EnemyRespawnController>().spawnPoint;
     }
 }

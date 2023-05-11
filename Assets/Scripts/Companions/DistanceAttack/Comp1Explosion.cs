@@ -7,6 +7,7 @@ public class Comp1Explosion : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
-            EnemyHealthController.sharedInstance.EnemyTakingDamage();
+            collision.gameObject.GetComponent<EnemyHealthController>().EnemyTakingDamage();
+                //EnemyHealthController.sharedInstance.EnemyTakingDamage();
     }
 }

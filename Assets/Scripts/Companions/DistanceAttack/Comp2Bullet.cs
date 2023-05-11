@@ -18,7 +18,8 @@ public class Comp2Bullet : MonoBehaviour
         //Si es el jugador el que entra en la zona de la bala
         if (collision.CompareTag("Enemy"))
         {
-            EnemyHealthController.sharedInstance.EnemyTakingDamage();
+            collision.gameObject.GetComponent<EnemyHealthController>().EnemyTakingDamage();
+            //EnemyHealthController.sharedInstance.EnemyTakingDamage();
         }
 
         //Destruimos la bala
