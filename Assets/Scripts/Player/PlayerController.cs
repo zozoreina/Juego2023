@@ -293,6 +293,21 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //Método por el que el player se engancha a las plataformas y se suelta
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Si el objeto está tageado como plataforma se engancha
+        if (collision.gameObject.tag == "Platform")
+            //El jugador se vuelve hijo de la plataforma
+            transform.parent = collision.transform;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+            //El jugador se suelta de la plataforma
+            transform.parent = null;
+    }
+
     //Método para gestionar el knockback 
     public void KnockBack()
     {
