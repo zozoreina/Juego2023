@@ -18,6 +18,9 @@ public class DistanceEnemyController : MonoBehaviour
     //Referencia al punto de arma y punto de disparo
     public Transform weapon, firepPoint;
 
+    Vector2 targetPointer;
+    float angle;
+
     //Singleton
     public static DistanceEnemyController sharedInstance;
     private void Awake()
@@ -29,21 +32,22 @@ public class DistanceEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Asignamos el target
-        target = PlayerController.sharedInstance.transform.position;
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Asignamos el target
+        target = PlayerController.sharedInstance.transform.position;
         //Creamos un apuntador al target y lo normalizamos
-        Vector2 targetPointer = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
+        targetPointer = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         targetPointer.Normalize();
-        float angle = Vector2.Angle(targetPointer, transform.forward);
+         angle = Vector2.Angle(targetPointer, transform.right);
         //Cambiamos la rotación del arma
-        weapon.rotation = Quaternion.AngleAxis(angle, targetPointer);
+        //weapon.rotation = Quaternion.AngleAxis(angle, targetPointer);
+        weapon.rotation = Quaternion.AngleAxis(-angle, Vector3.forward);
 
         //Si el contador de tiempo entre ataques no está vacío hacemos que se vacíe
         if (tBACounter > 0)
