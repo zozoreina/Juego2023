@@ -8,7 +8,8 @@ public class EnemyController : MonoBehaviour
 
     //Referencia al RB
     private Rigidbody2D theRB;
-
+    //Referencia al SR
+    private SpriteRenderer theSR;
     
 
     //Puntos entre los que patrulla el enemigo
@@ -45,8 +46,8 @@ public class EnemyController : MonoBehaviour
     {
         //Inicializamos el RB
         theRB = GetComponent<Rigidbody2D>();
-
-        
+        //inicializamos el SR
+        theSR = GetComponent<SpriteRenderer>();
 
         //Sacamos los puntos de patrulla del Enemigo
         foreach (Transform p in patrolPoints)
@@ -71,6 +72,10 @@ public class EnemyController : MonoBehaviour
                 {
                     //Movemos al enemigo
                     transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentPoint].position, moveSpeed * Time.deltaTime);
+                    //Giramos el Sprite del enemigo
+                    if (transform.position.x < patrolPoints[currentPoint].position.x)
+                        theSR.flipX = true;
+                    else theSR.flipX = false;
                     //Cuando el enemigo llegue a su destino
                     if (Vector3.Distance(transform.position, patrolPoints[currentPoint].position) < .1f)
                     {
