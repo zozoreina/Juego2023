@@ -159,16 +159,16 @@ public class PlayerController : MonoBehaviour
                     if (theRB.velocity.x < 0)
                     {
                         //No cambiamos el sprite
-                        theSR.flipX = false;
+                        //theSR.flipX = false;
                         //El jugador mira a la izquierda 
                         isLeft = true;
-                        transform.localScale = new Vector3(-1f, 1.5f, 1f);
+                        transform.localScale = new Vector3(-1f, 1f, 1f);
                     }
                     else if (theRB.velocity.x > 0)
                     {
-                        theSR.flipX = true;
+                        //theSR.flipX = false;
                         isLeft = false;
-                        transform.localScale = new Vector3(1f, 1.5f, 1f);
+                        transform.localScale = new Vector3(1f, 1f, 1f);
                     }
 
                     //Para habilitar la capacidad de atacar del jugador
@@ -288,6 +288,7 @@ public class PlayerController : MonoBehaviour
         //Animaciones del jugador
         //Cambiamos el valor del parametro del animator "movespeed", dependiendo del valor de X de la velocidad de RB
         anim.SetFloat("moveSpeed", Mathf.Abs(theRB.velocity.x));
+        anim.SetFloat("ySpeed", theRB.velocity.y);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetBool("isHurt", isHurt);
 
