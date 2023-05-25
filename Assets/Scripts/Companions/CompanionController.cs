@@ -8,6 +8,8 @@ public class CompanionController : MonoBehaviour
     Rigidbody2D theRB;
     //Referencia al animator
     public Animator anim;
+    //Referencia al SpriteRenderer
+    SpriteRenderer theSR;
 
     //Referencia a la posición a la que se quieren mover los compañeros
     public Transform[] objetivePos;
@@ -39,6 +41,9 @@ public class CompanionController : MonoBehaviour
     //Posición de las que salen las balas
     public Transform BulletPoint1, BulletPoint2;
 
+    //Sprites del compañero
+    public Sprite[] sprites;
+
     //Singleton
     public static CompanionController sharedInstance;
 
@@ -56,6 +61,7 @@ public class CompanionController : MonoBehaviour
     {
         theRB = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        theSR = GetComponent<SpriteRenderer>();
         currentPos = 0;
         moveSpeed = normalMoveSpeed;
     }
@@ -63,13 +69,19 @@ public class CompanionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundPoint.position, 1f, whatIsGround);
+        //isGrounded = Physics2D.OverlapCircle(groundPoint.position, 1f, whatIsGround);
 
         //Para saber si mira a la izquierda o la derecha
         if (theRB.position.x < objetivePos[currentPos].position.x)
+        {
+            theSR.flipX = false;
             isLeft = false;
+        }
         else if (theRB.position.x > objetivePos[currentPos].position.x)
+        {
+            theSR.flipX = true;
             isLeft = true;
+        }
 
        
         //El compañero se mueve hacia el objetivo
@@ -83,10 +95,13 @@ public class CompanionController : MonoBehaviour
         else if (Mathf.Abs(theRB.position.x - objetivePos[currentPos].position.x) < .1f)
             theRB.velocity = new Vector2(0, theRB.velocity.y);
 
-        if (theRB.position.y < objetivePos[currentPos].position.y -.1f && isGrounded) 
+        if (theRB.position.y < objetivePos[currentPos].position.y - .1 /*&& isGrounded*/)
         {
             theRB.velocity = new Vector2(theRB.velocity.x, moveSpeed);
         }
+        else if (theRB.position.y > objetivePos[currentPos].position.y + .1)
+            theRB.velocity = new Vector2(theRB.velocity.x, -moveSpeed);
+        else theRB.velocity = new Vector2(theRB.velocity.x, 0);
 
         //Para respawnear al compañero si se queda muy lejos del jugador
         if (Vector3.Distance(transform.position, objetivePos[currentPos].transform.position) > 20)
@@ -108,6 +123,7 @@ public class CompanionController : MonoBehaviour
     //Método por el que el compañero se mueve a la zona de ataque
     public void MoveToAttack()
     {
+        theSR.sprite = sprites[1];
         moveSpeed = helperMoveSpeed;
         currentPos = 1;
         hasAttacked = true;
@@ -115,6 +131,7 @@ public class CompanionController : MonoBehaviour
     }
     public void MoveAfterAttack()
     {
+        theSR.sprite = sprites[0];
         moveSpeed = normalMoveSpeed;
         currentPos = 0;
         hasAttacked = false;
@@ -123,14 +140,16 @@ public class CompanionController : MonoBehaviour
     //Métodos por los que el compañero se moverá a hacer el ataque en el aire
     public void MoveToAirAttack()
     {
-        theRB.gravityScale = 0;
+        theSR.sprite = sprites[1];
+        //theRB.gravityScale = 0;
         moveSpeed = helperMoveSpeed;
         currentPos = 2;
     }
     public void MoveAfterAirAttack()
     {
+        theSR.sprite = sprites[0];
         anim.SetBool("AirAttack", false);
-        theRB.gravityScale = 1.5f;
+        //theRB.gravityScale = 1.5f;
         moveSpeed = normalMoveSpeed;
         currentPos = 0;
     }
@@ -138,14 +157,14 @@ public class CompanionController : MonoBehaviour
     //Métodos por los que el compañero se moverá a hacer el AirDash
     public void MoveToAirDash()
     {
-        theRB.gravityScale = 0f;
+        //theRB.gravityScale = 0f;
         moveSpeed = helperMoveSpeed;
         currentPos = 3;
     }
     public void MoveAfterAirDash()
     {
         anim.SetBool("AirDash", false);
-        theRB.gravityScale = 1.5f;
+        //theRB.gravityScale = 1.5f;
         moveSpeed = normalMoveSpeed;
         currentPos = 0;
     }
@@ -153,14 +172,14 @@ public class CompanionController : MonoBehaviour
     //Métodos por los que el compañero se moverá para hacer DoubleJump
     public void MoveToDoubleJump()
     {
-        theRB.gravityScale = 0f;
+       // theRB.gravityScale = 0f;
         moveSpeed = helperMoveSpeed;
         currentPos = 3;
     }
     public void MoveAfterDoubleJump()
     {
         anim.SetBool("DoubleJump", false);
-        theRB.gravityScale = 1.5f;
+        //theRB.gravityScale = 1.5f;
         moveSpeed = normalMoveSpeed;
         currentPos = 0; 
     }

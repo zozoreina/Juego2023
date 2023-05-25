@@ -103,6 +103,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -45198,13 +45210,13 @@ TextureImporter:
       samtiles_86: -1184649634
       samtiles_617: -1388790089
       samtiles_349: -626556999
-      samtiles_519: 1004521287
-      samtiles_1305: 678035131
       samtiles_893: 76620656
-      samtiles_914: 1331105489
-      samtiles_1759: -1106646053
+      samtiles_1305: 678035131
       samtiles_1006: 1595532170
+      samtiles_519: 1004521287
+      samtiles_1759: -1106646053
       samtiles_1795: -429433540
+      samtiles_914: 1331105489
       samtiles_2028: -1854958590
       samtiles_565: -1616256949
       samtiles_999: -597549159
@@ -45232,8 +45244,8 @@ TextureImporter:
       samtiles_1392: -79414566
       samtiles_614: -1119729334
       samtiles_645: 1949208375
-      samtiles_650: 1925359060
       samtiles_1838: 376290567
+      samtiles_650: 1925359060
       samtiles_403: -1619806496
       samtiles_611: 997963825
       samtiles_939: 2119018420
@@ -45429,10 +45441,10 @@ TextureImporter:
       samtiles_1138: 2021215689
       samtiles_1894: -1727708111
       samtiles_654: -1469975318
-      samtiles_1173: 129225955
+      samtiles_2071: -407830348
       samtiles_1945: -1185725379
       samtiles_1277: 858840090
-      samtiles_2071: -407830348
+      samtiles_1173: 129225955
       samtiles_1097: 690879197
       samtiles_878: -1433192524
       samtiles_445: -1021004715
@@ -45463,11 +45475,11 @@ TextureImporter:
       samtiles_1971: -665224573
       samtiles_696: 1143956738
       samtiles_536: -802187409
-      samtiles_1400: -682981907
       samtiles_1819: -106377892
       samtiles_979: -802061942
       samtiles_1333: -920399528
       samtiles_1705: 835368490
+      samtiles_1400: -682981907
       samtiles_1817: 1495954586
       samtiles_2098: -1507218981
       samtiles_538: 574300157
@@ -45489,10 +45501,9 @@ TextureImporter:
       samtiles_1159: -2104902074
       samtiles_664: -285894068
       samtiles_23: -1805706442
-      samtiles_590: 946259149
       samtiles_1074: 1174368412
+      samtiles_590: 946259149
       samtiles_176: 123231406
-      samtiles_1116: -1345733148
       samtiles_1390: 910923080
       samtiles_1763: -1008871168
       samtiles_153: -291186634
@@ -45507,6 +45518,7 @@ TextureImporter:
       samtiles_1955: 1593737180
       samtiles_1526: -699501347
       samtiles_1861: 1965731860
+      samtiles_1116: -1345733148
       samtiles_1164: -702138130
       samtiles_1794: -1162459692
       samtiles_984: -187386760
@@ -45682,9 +45694,9 @@ TextureImporter:
       samtiles_163: 1244812990
       samtiles_441: 1470677140
       samtiles_123: 464321498
-      samtiles_583: 549958926
       samtiles_884: -950090601
       samtiles_1774: -451320269
+      samtiles_583: 549958926
       samtiles_1417: -995510038
       samtiles_150: 684280803
       samtiles_874: 1058812181
@@ -45707,9 +45719,9 @@ TextureImporter:
       samtiles_1362: -393080086
       samtiles_2129: -1728962702
       samtiles_20: -529822412
-      samtiles_32: -249836610
-      samtiles_1747: -391969057
       samtiles_1870: 1097236278
+      samtiles_1747: -391969057
+      samtiles_32: -249836610
       samtiles_489: 192300510
       samtiles_80: 1768630557
       samtiles_995: -180873893
@@ -45718,21 +45730,21 @@ TextureImporter:
       samtiles_397: -1664141529
       samtiles_372: 1062104615
       samtiles_1156: -1034627968
-      samtiles_709: -987111234
+      samtiles_846: 170474485
       samtiles_168: -1107496977
       samtiles_1368: -966339042
-      samtiles_846: 170474485
-      samtiles_419: -2092297197
-      samtiles_1350: 610328225
       samtiles_848: 1497680438
+      samtiles_419: -2092297197
+      samtiles_1234: 1323018541
+      samtiles_1350: 610328225
       samtiles_422: 1525505544
       samtiles_829: -534941290
       samtiles_575: -2074726035
-      samtiles_1234: 1323018541
       samtiles_1591: -1414730303
+      samtiles_1967: 154621292
       samtiles_507: 21456361
       samtiles_1750: -1461047445
-      samtiles_1967: 154621292
+      samtiles_709: -987111234
       samtiles_2019: -200235328
       samtiles_1805: -1042191203
       samtiles_1612: -712266605
@@ -45752,10 +45764,10 @@ TextureImporter:
       samtiles_1177: 1594277524
       samtiles_518: 285777986
       samtiles_1682: 880684075
-      samtiles_1707: 1021217590
+      samtiles_1823: -843720190
       samtiles_1609: 262197330
       samtiles_1604: -50662601
-      samtiles_1823: -843720190
+      samtiles_1707: 1021217590
       samtiles_2119: -1947057652
       samtiles_1296: -306140530
       samtiles_1403: 727838467
@@ -45768,46 +45780,45 @@ TextureImporter:
       samtiles_558: 1932590443
       samtiles_83: -613278890
       samtiles_728: 1670781534
-      samtiles_44: -1047408173
-      samtiles_62: 580658402
       samtiles_936: -473911607
-      samtiles_950: 519814114
       samtiles_1095: -112641015
+      samtiles_1532: -101378722
+      samtiles_950: 519814114
+      samtiles_1512: 585560635
       samtiles_994: 1324319847
       samtiles_126: 1326222041
       samtiles_1506: 902810183
       samtiles_1242: -1942321177
       samtiles_729: -246530950
       samtiles_374: 1424744770
-      samtiles_1571: 1521078146
-      samtiles_1532: -101378722
-      samtiles_1512: 585560635
       samtiles_1599: -1976060406
+      samtiles_1867: 2134741815
+      samtiles_1913: -1202694933
+      samtiles_1571: 1521078146
       samtiles_277: -1462540360
       samtiles_596: -1227249926
       samtiles_474: 2016245457
       samtiles_147: -157754411
       samtiles_1055: -2119375618
+      samtiles_44: -1047408173
       samtiles_1067: 1576910458
       samtiles_561: -1325132888
       samtiles_795: -84287495
-      samtiles_1327: -844318942
-      samtiles_1630: 1807091070
       samtiles_1887: 300478346
+      samtiles_1327: -844318942
+      samtiles_1948: -889060806
       samtiles_131: 1123512441
-      samtiles_2050: -141043512
-      samtiles_1867: 2134741815
+      samtiles_1630: 1807091070
       samtiles_46: 1661032769
       samtiles_2081: 1402765692
       samtiles_2133: 2109331966
       samtiles_1646: -1822195956
       samtiles_313: -405143777
       samtiles_1416: -1453105027
+      samtiles_2050: -141043512
       samtiles_463: -1805401558
       samtiles_2132: 1175637088
-      samtiles_1948: -889060806
       samtiles_215: -354557356
-      samtiles_1913: -1202694933
       samtiles_737: -1507488765
       samtiles_837: -1289476260
       samtiles_510: 1260731019
@@ -45816,6 +45827,7 @@ TextureImporter:
       samtiles_430: -1463359190
       samtiles_625: -18501455
       samtiles_130: 153912134
+      samtiles_62: 580658402
       samtiles_924: 181538541
       samtiles_2021: 433048091
       samtiles_1770: -1844240403
@@ -45829,14 +45841,13 @@ TextureImporter:
       samtiles_144: -1643351943
       samtiles_100: 935415240
       samtiles_1157: 2072525227
-      samtiles_1533: 1901301239
+      samtiles_1924: 2033293166
       samtiles_129: -293250873
       samtiles_1041: 1079527346
       samtiles_1664: -902729908
-      samtiles_1924: 2033293166
       samtiles_116: -2055597850
-      samtiles_321: 21484389
       samtiles_1561: -196997408
+      samtiles_321: 21484389
       samtiles_1742: -1094737072
       samtiles_1472: -1594391902
       samtiles_793: -1433439141
@@ -45844,6 +45855,7 @@ TextureImporter:
       samtiles_2002: 2092993883
       samtiles_298: -544582580
       samtiles_1700: 429247434
+      samtiles_1533: 1901301239
       samtiles_1146: 2052478993
       samtiles_1225: 468963230
       samtiles_1923: -620805949
@@ -46266,8 +46278,8 @@ TextureImporter:
       samtiles_1238: -2049090662
       samtiles_181: 202917385
       samtiles_888: 704541929
-      samtiles_1821: 38284194
       samtiles_2114: -884540040
+      samtiles_1821: 38284194
       samtiles_408: -435003347
       samtiles_636: -2031301532
       samtiles_1366: 786675399
@@ -46298,11 +46310,11 @@ TextureImporter:
       samtiles_749: -696648287
       samtiles_826: -414524316
       samtiles_2053: 360226367
-      samtiles_803: 1724968511
       samtiles_1877: 1205696378
-      samtiles_466: 1540460864
-      samtiles_1148: -751882597
       samtiles_2109: -48039587
+      samtiles_466: 1540460864
+      samtiles_803: 1724968511
+      samtiles_1148: -751882597
       samtiles_347: 581087768
       samtiles_303: 1509882401
       samtiles_943: -2049665615
@@ -46311,22 +46323,22 @@ TextureImporter:
       samtiles_1530: -709939241
       samtiles_1842: -700286701
       samtiles_482: -1898925633
+      samtiles_1462: -2100228251
       samtiles_1410: -1257837076
-      samtiles_1465: 765512253
       samtiles_1068: -719167387
+      samtiles_1465: 765512253
       samtiles_760: 2088142749
       samtiles_1439: -433746670
       samtiles_1686: -46725827
-      samtiles_1462: -2100228251
       samtiles_60: 1476435312
       samtiles_2142: -2054245333
       samtiles_1746: -356148863
-      samtiles_405: 450338085
+      samtiles_2088: -1823998926
       samtiles_335: -333428305
+      samtiles_2006: 1997928876
       samtiles_24: 462201500
       samtiles_633: 1498428692
-      samtiles_2088: -1823998926
-      samtiles_2006: 1997928876
+      samtiles_405: 450338085
       samtiles_1298: 1995163547
       samtiles_36: -2112635028
       samtiles_606: 1854431851
@@ -46342,8 +46354,8 @@ TextureImporter:
       samtiles_501: 168460560
       samtiles_764: 537579797
       samtiles_310: -892262602
-      samtiles_824: -512610823
       samtiles_2086: -808103252
+      samtiles_824: -512610823
       samtiles_1383: -1654072402
       samtiles_942: -1211681005
       samtiles_1773: -199855473
@@ -46353,9 +46365,9 @@ TextureImporter:
       samtiles_295: 138437064
       samtiles_624: 1340901120
       samtiles_511: 989405316
+      samtiles_1548: 1189748436
       samtiles_420: -415670772
       samtiles_762: 1148241082
-      samtiles_1548: 1189748436
       samtiles_401: -2057472656
       samtiles_433: -399848464
       samtiles_852: 1980874185
@@ -46377,9 +46389,9 @@ TextureImporter:
       samtiles_1143: -1428047931
       samtiles_2067: -1587498890
       samtiles_325: 1135131901
-      samtiles_1186: -1423704519
       samtiles_1471: -287449827
       samtiles_2137: -1860734667
+      samtiles_1186: -1423704519
       samtiles_605: -455063577
       samtiles_1201: -117802213
       samtiles_895: 1754432354
@@ -46414,22 +46426,22 @@ TextureImporter:
       samtiles_475: 928703220
       samtiles_808: 313592984
       samtiles_138: -675591949
-      samtiles_989: 1525018649
       samtiles_1710: -1086325482
       samtiles_1209: 731062179
-      samtiles_1911: 1144939776
+      samtiles_989: 1525018649
       samtiles_877: -942428082
       samtiles_1003: 453291056
       samtiles_1779: 1246414285
       samtiles_1254: 820176424
-      samtiles_1053: 431248785
+      samtiles_1265: -1200372700
       samtiles_1918: 132613038
       samtiles_875: 418108584
+      samtiles_1053: 431248785
       samtiles_966: 1930972859
-      samtiles_1265: -1200372700
       samtiles_479: -2023066485
       samtiles_1144: -1726021263
       samtiles_240: -297976804
+      samtiles_1911: 1144939776
       samtiles_218: -1637540164
       samtiles_1389: 774785896
       samtiles_1339: -1029522937
@@ -46492,18 +46504,18 @@ TextureImporter:
       samtiles_734: 667810477
       samtiles_2063: 141375109
       samtiles_828: -293963042
-      samtiles_853: -755516570
       samtiles_1367: -1281977808
-      samtiles_1966: 944658424
       samtiles_1570: 168574063
+      samtiles_853: -755516570
+      samtiles_1966: 944658424
       samtiles_1086: -1721489311
       samtiles_1422: 1972540798
-      samtiles_193: -900571671
       samtiles_1883: -784796359
+      samtiles_193: -900571671
       samtiles_2123: 189223289
       samtiles_309: 1971031003
-      samtiles_496: 752534271
       samtiles_1822: 1284671913
+      samtiles_496: 752534271
       samtiles_376: 1702735083
       samtiles_1099: -696802555
       samtiles_121: 2132935061
@@ -46513,19 +46525,19 @@ TextureImporter:
       samtiles_957: -1036012457
       samtiles_104: 2136543378
       samtiles_265: 365571976
+      samtiles_1745: -1554426326
       samtiles_818: 1712173730
       samtiles_2115: 995600426
-      samtiles_1745: -1554426326
-      samtiles_480: 1180924749
       samtiles_468: -205270282
       samtiles_205: -2140632963
-      samtiles_792: -512295531
+      samtiles_1513: 1611037633
       samtiles_600: 546920158
+      samtiles_792: -512295531
       samtiles_242: 2116489801
-      samtiles_1166: -1414733110
       samtiles_2051: 1281464727
       samtiles_1535: 948263619
-      samtiles_1513: 1611037633
+      samtiles_480: 1180924749
+      samtiles_1166: -1414733110
       samtiles_1702: -1182349757
       samtiles_187: 59729967
       samtiles_1900: -437300753
