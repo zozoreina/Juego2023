@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class LevelManager : MonoBehaviour
     //Cantidad de tiempo a esperar que el jugador respawnee
     public float waitToRespawn;
 
-
+    //Siguiente nivel a cargar
+    public string levelToLoad;
 
     //Singleton
     public static LevelManager sharedInstance;
@@ -72,5 +74,20 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(waitToRespawn);
         //Enemy.gameObject.SetActive(true);
         Enemy.transform.position = Enemy.GetComponent<EnemyRespawnController>().spawnPoint;
+    }
+
+    //Método para salir del nivel
+    public void ExitLevel()
+    {
+
+    }
+
+    //Corrutina para salir del nivel
+    IEnumerator ExitLevelCo()
+    {
+        PlayerController.sharedInstance.canPlay = false;
+        FadeScreen.sharedInstance.FadeToBlack();
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(levelToLoad);
     }
 }

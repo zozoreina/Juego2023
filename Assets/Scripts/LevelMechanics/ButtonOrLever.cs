@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ButtonOrLever : MonoBehaviour
 {
+    //Referencia a los sprites del botón
+    public Sprite[] buttonSprites;
+    //Referencia al SpriteRenderer
+    SpriteRenderer thrSR;
     //Referencia a los objetos que el botón o palanca afecta
     public GameObject objectToAffect;
     //Referencia al Panel de Info
@@ -16,7 +20,7 @@ public class ButtonOrLever : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        thrSR = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,8 +40,8 @@ public class ButtonOrLever : MonoBehaviour
                 objectToAffect.SetActive(true);
                 //Activamos el interruptor
                 isUsed = true;
-                //Activamos la animación del botón
-
+                //Cambiamos el sprite del botón
+                thrSR.sprite = buttonSprites[1];
             }
             else
             {
@@ -45,7 +49,8 @@ public class ButtonOrLever : MonoBehaviour
                 objectToAffect.SetActive(false);
                 //Cambiamos el estado del botón
                 isUsed = false;
-                //Activamos la animación del botón
+                //Cambiamos el sprite del botón
+                thrSR.sprite = buttonSprites[0];
             }
 
         }

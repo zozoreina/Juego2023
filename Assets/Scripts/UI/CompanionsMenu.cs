@@ -21,7 +21,15 @@ public class CompanionsMenu : MonoBehaviour
 
     //Referencia al Menu de pausa
     public PauseMenu pauseMenu;
+    //Referencia a los sprites que indican que habilidades están activas
+    public Image[] tellers;
 
+    //Referencia a los botones de los compañeros
+    public Button comp1Button, comp2Button;
+    //Boleanas para saber que menú está activo
+    bool comp1men = true, comp2men;
+
+    
 
     // Update is called once per frame
     void Update()
@@ -40,7 +48,9 @@ public class CompanionsMenu : MonoBehaviour
             infoPanel.SetActive(false);
 
         if (isConversationOn && Input.GetKeyDown(KeyCode.Escape))
-            OutOfConversation();            
+            OutOfConversation();
+
+        TellerController();
             
     }
 
@@ -66,16 +76,52 @@ public class CompanionsMenu : MonoBehaviour
     {
         
         companion1Settings.SetActive(true);
+        comp1men = true;
         companion2Settings.SetActive(false);
+        comp2men = false;
 
     }
     public void Comp2ConvButton()
     {
         
         companion2Settings.SetActive(true);
+        comp2men = true;
         companion1Settings.SetActive(false);
+        comp1men = false;
     }
 
+    //Método para activar y desactivar los tellers en base a las habilidades que el jugador tiene activas
+    public void TellerController()
+    {
+        if (PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().airDash && comp1men)
+            tellers[0].color = comp1Button.colors.selectedColor;
+        else if (PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().airDash && comp2men)
+            tellers[0].color = comp2Button.colors.selectedColor;
+        else tellers[0].color = comp1Button.colors.normalColor;
 
+        if (PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().doubleJump && comp1men)
+            tellers[1].color = comp1Button.colors.selectedColor;
+        else if (PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().doubleJump && comp2men)
+            tellers[1].color = comp2Button.colors.selectedColor;
+        else tellers[1].color = comp1Button.colors.normalColor;
+
+        if (PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().attackCombo && comp1men)
+            tellers[2].color = comp1Button.colors.selectedColor;
+        else if (PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().attackCombo && comp2men)
+            tellers[2].color = comp2Button.colors.selectedColor;
+        else tellers[2].color = comp1Button.colors.normalColor;
+
+        if (PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().airAttack && comp1men)
+            tellers[3].color = comp1Button.colors.selectedColor;
+        else if (PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().airAttack && comp2men)
+            tellers[3].color = comp2Button.colors.selectedColor;
+        else tellers[3].color = comp1Button.colors.normalColor;
+
+        if (PlayerController.sharedInstance.companion1.GetComponent<CompanionController>().distanceAttack && comp1men)
+            tellers[4].color = comp1Button.colors.selectedColor;
+        else if (PlayerController.sharedInstance.companion2.GetComponent<CompanionController>().distanceAttack && comp2men)
+            tellers[4].color = comp2Button.colors.selectedColor;
+        else tellers[4].color = comp1Button.colors.normalColor;
+    }
 
 }

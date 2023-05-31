@@ -46,6 +46,9 @@ public class PlayerHealthController : MonoBehaviour
             //Hacemos que el player pueda atravesar al enemigo
             Physics2D.IgnoreLayerCollision(7, 9, true);
 
+            //Cambiamos la transparencia del jugador
+            theSR.color = new Color(theSR.color.r, theSR.color.g, theSR.color.b, .5f);
+
             //Cuando el contador sea 0 
             if (invinvibleCounter <= 0)
             {
