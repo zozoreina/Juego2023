@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     public float waitToRespawn;
 
     //Siguiente nivel a cargar
-    public string levelToLoad;
+    //public string levelToLoad;
 
     //Singleton
     public static LevelManager sharedInstance;
@@ -77,17 +77,17 @@ public class LevelManager : MonoBehaviour
     }
 
     //Método para salir del nivel
-    public void ExitLevel()
+    public void ExitLevel(string nextLevel)
     {
-
+        StartCoroutine(ExitLevelCo(nextLevel));
     }
 
     //Corrutina para salir del nivel
-    IEnumerator ExitLevelCo()
+    IEnumerator ExitLevelCo(string nextLevel)
     {
         PlayerController.sharedInstance.canPlay = false;
         FadeScreen.sharedInstance.FadeToBlack();
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(levelToLoad);
+        SceneManager.LoadScene(nextLevel);
     }
 }

@@ -13,6 +13,8 @@ public class ButtonOrLever : MonoBehaviour
     //Referencia al Panel de Info
     public GameObject infoPanel;
 
+    bool canuse;
+
     //Variable para saber si el botón o palanca ha sido activado
     bool isUsed;
     
@@ -27,12 +29,22 @@ public class ButtonOrLever : MonoBehaviour
     void Update()
     {
         //Si el jugador está lo suficientemente cerca del botón aparece la señal
-        if (Vector2.Distance(transform.position, PlayerController.sharedInstance.transform.position) < .6)
-            infoPanel.SetActive(true);
-        else infoPanel.SetActive(false);
-
-        if (Input.GetKeyDown(KeyCode.F) && infoPanel)
+        if (Vector2.Distance(transform.position, PlayerController.sharedInstance.transform.position) < 1)
         {
+
+            infoPanel.SetActive(true);
+            canuse = true;
+            Debug.Log("awdadsaw");
+        }
+        else 
+        { 
+            infoPanel.SetActive(false);
+            canuse = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && canuse)
+        {
+            Debug.Log("pene");
             //Si el interruptor no está activado
             if (!isUsed)
             {

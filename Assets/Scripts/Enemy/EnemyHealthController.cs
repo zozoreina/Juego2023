@@ -6,8 +6,10 @@ public class EnemyHealthController : MonoBehaviour
 {
     //Vida
     public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
 
+    //Referencia al objeto que suelta el enemigo al morir
+    public GameObject dropeable;
 
     //Singleton
     public static EnemyHealthController sharedInstance;
@@ -30,6 +32,7 @@ public class EnemyHealthController : MonoBehaviour
         currentHealth--;
         if(currentHealth <= 0)
         {
+            Instantiate(dropeable, transform.position, transform.rotation);
             gameObject.SetActive(false);
         }
         else

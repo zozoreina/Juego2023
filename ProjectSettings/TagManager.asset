@@ -8,11 +8,13 @@ TagManager:
   - Trap
   - Companion
   - CompBullet
+  - Platform
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Camera
   - Water
   - UI
   - Ground
