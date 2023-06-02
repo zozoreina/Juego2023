@@ -10,7 +10,7 @@ public class Comp2Bullet : MonoBehaviour
     void Update()
     {
         //Movemos a la bala en horizontal, usamos el LocalScale para saber a donde debe apuntar la bala (derecha o izquierda)
-        transform.position += new Vector3(-moveSpeed * transform.localScale.x * Time.deltaTime, 0f, 0f);
+        transform.position += new Vector3(moveSpeed * transform.localScale.x * Time.deltaTime, 0f, 0f);
     }
     //Cuando un objeto entra en la zona de la bala
     private void OnTriggerEnter2D(Collider2D collision)
