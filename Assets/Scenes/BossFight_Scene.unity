@@ -79395,7 +79395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  currentHealth: 0
+  currentHealth: 3
   dropeable: {fileID: 0}
 --- !u!1 &2026009533
 GameObject:

@@ -12,6 +12,10 @@ public class BossManager : MonoBehaviour
     void Update()
     {
         if (EnemyHealthController.sharedInstance.currentHealth == 0)
-            FadeScreen.sharedInstance.FadeToBlack(); SceneManager.LoadScene(sceneToLoad);
+        {
+
+            FadeScreen.sharedInstance.FadeToBlack();
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 }

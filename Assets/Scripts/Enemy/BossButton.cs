@@ -29,6 +29,7 @@ public class BossButton : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && infoPanel)
         {
             objectToAffect.SetActive(true);
+            infoPanel.SetActive(false);
             gameObject.SetActive(false);
         }
     }
